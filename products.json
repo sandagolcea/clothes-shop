@@ -5,8 +5,20 @@
     "quantity": 3
   },
   {
-    "name": "Blue swede shoes",
+    "name": "Sandals",
     "cathegory": "women footwear",
+    "price": 78,
+    "quantity": 5
+  },
+  {
+    "name": "Tom tom shoes",
+    "cathegory": "men footwear",
+    "price": 80,
+    "quantity": 2
+  },
+  {
+    "name": "Athletic wear shoes",
+    "cathegory": "men footwear",
     "price": 78,
     "quantity": 5
   }

@@ -1,9 +1,17 @@
 /* Main page elements */
 .container {
-  background-color: #C2FFFF;
+  width: 80%;
 }
 
 /* List of products */
-ul {  
+.products {  
   list-style: none;
+  /*display: inline-block;*/
+  width: 80%;
+}
+
+.products li {
+  border: 1px solid black;
+  padding: 3px;
+  background-color: #EEE;
 }
