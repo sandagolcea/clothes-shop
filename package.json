@@ -1,0 +1,31 @@
+{
+  "name": "clothes-shop",
+  "version": "1.0.0",
+  "description": "Practice clothes shop",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sandagolcea/clothes-shop.git"
+  },
+  "keywords": [
+    "angular",
+    "store",
+    "clothes",
+    "node",
+    "javascript",
+    "FE"
+  ],
+  "author": "Sanda Golcea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sandagolcea/clothes-shop/issues"
+  },
+  "homepage": "https://github.com/sandagolcea/clothes-shop",
+  "dependencies": {
+    "express": "^4.12.3",
+    "html": "0.0.10"
+  }
+}

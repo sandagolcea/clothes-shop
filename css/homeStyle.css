@@ -1,0 +1,9 @@
+/* Main page elements */
+.container {
+  background-color: #C2FFFF;
+}
+
+/* List of products */
+ul {  
+  list-style: none;
+}
