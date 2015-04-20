@@ -16,10 +16,10 @@
       <div class="container">
         <a href="/" class="navbar-brand">Clothes express</a>
         <a class='navbar-text' href="#">Search</a>
-        <a class='navbar-text' href="#">Cathegories</a>
-        <a class='navbar-text' href="#">New</a>
+        <a class='navbar-text' href="#">Categories</a>
         <button type="button" class="btn btn-default navbar-btn btn-md navbar-right">
-          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart
+          <span ng-class="{orange:(cart.totalItems() > 0)}" class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
+            <span ng-show='cart.totalItems() > 0'> {{cart.totalItems()}} </span></span>
         </button>
       </div>
     </nav>
@@ -34,7 +34,7 @@
       </li>
     </ul>
     <!-- Items in shopping cart -->
-    <ul ng-repeat='item in shop.itemsInCart'>
+    <ul ng-repeat='item in cart.items'>
       <li>{{item.name}} - {{item.price | currency}} - qty: {{item.quantity}}</li>
     </ul>
   </div>
