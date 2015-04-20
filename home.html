@@ -34,8 +34,8 @@
       </li>
     </ul>
     <!-- Items in shopping cart -->
-    <ul ng-repeat='item in shop.items'>
-      <li>{{item.name}} - {{item.price | currency}}</li>
+    <ul ng-repeat='item in shop.itemsInCart'>
+      <li>{{item.name}} - {{item.price | currency}} - qty: {{item.quantity}}</li>
     </ul>
   </div>
   <!-- Angular: -->
