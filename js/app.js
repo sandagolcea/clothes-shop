@@ -1,4 +1,4 @@
-var app = angular.module('clothesShop', []);
+var app = angular.module('clothesShop', ['ui.bootstrap']);
 
 app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
   var shop = this;
@@ -13,5 +13,10 @@ app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
       product.quantity -= 1;
       $scope.cart.addItem(product.pid, product.name, product.price, 1);
     }
+  }
+
+  $scope.removeFromCart = function (product) {
+    if ( $scope.cart.removeItem(product.pid) )
+      product.quantity += 1;
   }
 }]);
