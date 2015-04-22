@@ -1,6 +1,6 @@
 var app = angular.module('clothesShop', ['ngRoute', 'angular.filter']);
 
-app.factory('ShoppingCart', ['$http', function ($http) {
+app.factory('DataFactory', ['$http', function ($http) {
   var newCart = new ShoppingCart();
   var newShop = new Shop();
   $http.get('products.json').success(function(data){
@@ -9,9 +9,9 @@ app.factory('ShoppingCart', ['$http', function ($http) {
   return { cart: newCart, shop: newShop };
 }]);
 
-app.controller('MainController', ['$scope', 'ShoppingCart', function ($scope, ShoppingCart) {
-  $scope.cart = ShoppingCart.cart;
-  $scope.shop = ShoppingCart.shop;
+app.controller('MainController', ['$scope', 'DataFactory', function ($scope, DataFactory) {
+  $scope.cart = DataFactory.cart;
+  $scope.shop = DataFactory.shop;
 
 
   $scope.addToCart = function (product) {
@@ -39,6 +39,24 @@ app.controller('MainController', ['$scope', 'ShoppingCart', function ($scope, Sh
   }
 }]);
 
+app.controller('ProductRetriever', function storeController($scope, $routeParams, DataFactory) {
+
+    $scope.shop = DataFactory.shop;
+    $scope.cart = DataFactory.cart;
+
+    $scope.getProduct = function (pid) {
+        for (var i = 0; i < $scope.shop.products.length; i++) {
+            if ($scope.shop.products[i].pid == pid)
+                return $scope.shop.products[i];
+        }
+        return null;
+    }
+
+    if ($routeParams.pid != null) {
+        $scope.product = $scope.getProduct($routeParams.pid);
+    }
+
+});
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -51,6 +69,11 @@ app.config(function ($routeProvider) {
     {
       templateUrl: '/views/cart.html',
       controller: 'MainController'
+    })
+    .when('/products/:pid',
+    {
+      templateUrl: '/views/product.html',
+      controller: 'ProductRetriever'
     })
     .when('/categories', 
     {

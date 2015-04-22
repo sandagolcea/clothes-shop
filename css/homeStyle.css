@@ -19,3 +19,19 @@
 .orange {
   color: orange;
 }
+
+.product {
+  background-color: #efefef;
+  border: 1px solid black;
+  height: 175px;
+  width: 225px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.productHeader {
+  background-color: #006dcc;
+  font-size: 14pt;
+  color: white;
+  padding: 5px;
+}
