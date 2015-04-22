@@ -2,5 +2,6 @@
 <ul class='products' ng-repeat='item in cart.items'>
   <li>
     {{item.name}} - {{item.price | currency}} - qty: {{item.quantity}}
+    <button ng-click='cartRemoval(item)'>Remove from cart</button>
   </li>
 </ul>

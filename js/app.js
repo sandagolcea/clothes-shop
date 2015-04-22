@@ -1,17 +1,18 @@
 var app = angular.module('clothesShop', ['ngRoute', 'angular.filter']);
 
-app.factory('ShoppingCart', function () {
+app.factory('ShoppingCart', ['$http', function ($http) {
   var newCart = new ShoppingCart();
-  return { cart: newCart };
-});
-
-app.controller('MainController', ['$scope', '$http', 'ShoppingCart', function ($scope, $http, ShoppingCart) {
-  var shop = this;
-  $scope.cart = ShoppingCart.cart;
-
+  var newShop = new Shop();
   $http.get('products.json').success(function(data){
-    shop.products = data;
+    newShop.products = data;
   });
+  return { cart: newCart, shop: newShop };
+}]);
+
+app.controller('MainController', ['$scope', 'ShoppingCart', function ($scope, ShoppingCart) {
+  $scope.cart = ShoppingCart.cart;
+  $scope.shop = ShoppingCart.shop;
+
 
   $scope.addToCart = function (product) {
     if (product.quantity > 0) {
@@ -23,6 +24,18 @@ app.controller('MainController', ['$scope', '$http', 'ShoppingCart', function ($
   $scope.removeFromCart = function (product) {
     if ( $scope.cart.removeItem(product.pid) )
       product.quantity += 1;
+  }
+
+  $scope.cartRemoval = function (item) {
+    var i;
+    if ( $scope.cart.removeItem(item.pid) )
+    {
+      for (i = 0; i < $scope.shop.products.length; i++) {
+        if ( $scope.shop.products[i].pid === item.pid ) {
+          $scope.shop.products[i].quantity += 1 ;
+        }
+      }
+    }
   }
 }]);
 
