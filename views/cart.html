@@ -1,0 +1,6 @@
+<!-- Items in the shopping cart -->
+<ul class='products' ng-repeat='item in cart.items'>
+  <li>
+    {{item.name}} - {{item.price | currency}} - qty: {{item.quantity}}
+  </li>
+</ul>

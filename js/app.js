@@ -1,8 +1,13 @@
-var app = angular.module('clothesShop', ['ui.bootstrap']);
+var app = angular.module('clothesShop', ['ngRoute', 'angular.filter']);
 
-app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
+app.factory('ShoppingCart', function () {
+  var newCart = new ShoppingCart();
+  return { cart: newCart };
+});
+
+app.controller('MainController', ['$scope', '$http', 'ShoppingCart', function ($scope, $http, ShoppingCart) {
   var shop = this;
-  $scope.cart = new ShoppingCart();
+  $scope.cart = ShoppingCart.cart;
 
   $http.get('products.json').success(function(data){
     shop.products = data;
@@ -20,3 +25,24 @@ app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
       product.quantity += 1;
   }
 }]);
+
+
+app.config(function ($routeProvider) {
+  $routeProvider
+    .when('/', 
+    {
+      templateUrl: '/views/products.html',
+      controller: 'MainController'
+    })
+    .when('/cart', 
+    {
+      templateUrl: '/views/cart.html',
+      controller: 'MainController'
+    })
+    .when('/categories', 
+    {
+      templateUrl: '/views/categories.html',
+      controller: 'MainController'
+    })
+    .otherwise({ redirectTo: '/'});
+});

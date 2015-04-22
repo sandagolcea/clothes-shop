@@ -1,28 +1,28 @@
 [{
     "pid": 1,
     "name": "Timberland boots",
-    "cathegory": "women footwear",
+    "category": "women footwear",
     "price": 99,
     "quantity": 3
   },
   {
     "pid": 2,
     "name": "Sandals",
-    "cathegory": "women footwear",
+    "category": "women footwear",
     "price": 78,
     "quantity": 5
   },
   {
     "pid": 3,
     "name": "Tom tom shoes",
-    "cathegory": "men footwear",
+    "category": "men footwear",
     "price": 80,
     "quantity": 2
   },
   {
     "pid": 4,
     "name": "Athletic wear shoes",
-    "cathegory": "men footwear",
+    "category": "men footwear",
     "price": 78,
     "quantity": 5
   }

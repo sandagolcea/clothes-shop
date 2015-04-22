@@ -1,0 +1,10 @@
+<!-- List of products available -->
+<ul class='products' ng-repeat="product in shop.products">
+  <li>
+    <h3>{{product.name}}</h3>
+    <em class='pull-right'>price: {{product.price | currency}}</em>
+    <p>quantity: {{product.quantity}}</p>
+    <button ng-click='addToCart(product)'>Add to cart</button>
+    <button ng-click='removeFromCart(product)'>Remove from cart</button>
+  </li>
+</ul>
