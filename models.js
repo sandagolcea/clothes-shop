@@ -1,14 +1,19 @@
 var mongoose =  require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
+var categorySchema = new Schema({
+  name: String
+});
 
 var productSchema = new Schema({
   name: String,
-  // TODO: replace category to categoryID from category Schema
-  category: String,
+  categoryId: { type: ObjectId, ref: 'Category' },
   price: Number,
   quantity: Number
 });
 
+mongoose.model('Category', categorySchema);
 mongoose.model('Product', productSchema);
 
 mongoose.connect('mongodb://localhost/test');
