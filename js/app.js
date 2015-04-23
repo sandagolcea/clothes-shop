@@ -40,10 +40,6 @@ app.controller('MainController', ['$scope', 'DataFactory', function ($scope, Dat
 }]);
 
 app.controller('ProductRetriever', function storeController($scope, $routeParams, DataFactory) {
-
-    $scope.shop = DataFactory.shop;
-    $scope.cart = DataFactory.cart;
-
     $scope.getProduct = function (pid) {
         for (var i = 0; i < $scope.shop.products.length; i++) {
             if ($scope.shop.products[i].pid == pid)

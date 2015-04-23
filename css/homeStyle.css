@@ -27,6 +27,8 @@
   width: 225px;
   margin-bottom: 20px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .productHeader {
@@ -34,4 +36,9 @@
   font-size: 14pt;
   color: white;
   padding: 5px;
+}
+
+.cart li {
+  display: inline-block;
+  padding-right: 20px;
 }
