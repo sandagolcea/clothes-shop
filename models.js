@@ -8,7 +8,7 @@ var categorySchema = new Schema({
 
 var productSchema = new Schema({
   name: String,
-  categoryId: { type: ObjectId, ref: 'Category' },
+  categoryId: { type: ObjectId, ref: 'Category', index: true },
   price: Number,
   quantity: Number
 });
