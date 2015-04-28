@@ -14,3 +14,7 @@ open new tab (or simply goto localhost:3000):
 
 ##to test
 `karma start test/karma.conf.js`  
+
+##to seed the db
+Open the database: `mongod --dbpath data/db`  
+Seed into the database: `node js/seedFile.js`  

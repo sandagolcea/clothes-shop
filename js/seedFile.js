@@ -1,22 +1,71 @@
-var exports = module.exports = {};
+require('./models.js');
 var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 var Category = mongoose.model('Category');
 
-function seedProduct (categoryName, productName, productPrice, productQty) {
-  var category = new Category({name: categoryName});
-  category.save();
+function createCategories(categoryNames) {
+  var pendingCategoriesNr = categoryNames.length - 1;
+  categoryNames.forEach(function (categ) {
+    Category.create ( { name: categ },  function (err) {
+      if (err) { 
+        return handleError(err); 
+      } else { 
+        pendingCategoriesNr--;
+      }
+      if (pendingCategoriesNr == 0) {
+        seedAllProducts(products);
+      };
+    });
+  });
+}
 
-  var product = new Product({
-    name: productName,
+function createProduct (productName, productPrice, productQty, category) {
+  Product.create({ 
+    name: productName, 
     categoryId: category._id,
     price: productPrice,
     quantity: productQty
-  });
-  product.save();
+    });
 }
 
-seedProduct('women shoes','Heels',110,4);
-seedProduct('women shoes','Sandals',88,3);
-seedProduct('men shoes','Timberland',94,1);
-seedProduct('men shoes','Tom\'s',120,10);
+function seedProduct (categoryName, productName, productPrice, productQty) {
+  Category.findOne({ name: categoryName })
+  .exec()
+    .then(function (category) {
+        return createProduct(productName, productPrice, productQty, category);
+    });
+}
+
+function seedAllProducts (products) {
+  products.forEach(function(product){
+    seedProduct(product.category, product.name, product.price, product.quantity);
+  });
+}
+
+createCategories(['men shoes','women shoes']);
+
+var products = [{
+    'category': 'women shoes',
+    'name': 'Heels',
+    'price': 110,
+    'quantity': 4
+  },
+  {
+    'category': 'women shoes',
+    'name': 'Sandals',
+    'price': 88,
+    'quantity': 3
+  },
+  {
+    'category': 'men shoes',
+    'name': 'Timberland',
+    'price': 94,
+    'quantity': 1
+  },
+  {
+    'category': 'men shoes',
+    'name': 'Tom\'s',
+    'price': 120,
+    'quantity': 10
+  }
+]
