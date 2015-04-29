@@ -6,20 +6,15 @@ var Category = mongoose.model('Category');
 var products = require('../products.json');
 
 function createCategories(categoryNames) {
-  var tasks = [];
-  categoryNames.forEach(function (categ) {
-    tasks.push( function(callback) {
-      Category.create ( { name: categ },  function (err, cat) {
+  async.each(categoryNames, function (category, callback) {
+      Category.create ( { name: category },  function (err, cat) {
         callback(err, cat);
       });
-    });
-  });
-
-  async.parallel(tasks, function (err, results){
-    results.forEach(function(result) {
-      console.log('result is : '+result);
-    });
-    seedAllProducts(products)
+    }, 
+    function (err) { 
+      if ( !err ) {
+        seedAllProducts(products)
+      }
   });
 }
 
