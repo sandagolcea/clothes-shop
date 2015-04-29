@@ -24,7 +24,7 @@ function seedProduct (categoryName, productName, productPrice, productQty) {
   .then(function (category) {
     Product.create({ 
       name: productName, 
-      categoryId: category._id,
+      category: category._id,
       price: productPrice,
       quantity: productQty
     });

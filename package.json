@@ -26,6 +26,7 @@
   "homepage": "https://github.com/sandagolcea/clothes-shop",
   "dependencies": {
     "async": "^0.9.0",
+    "body-parser": "^1.12.3",
     "express": "^4.12.3",
     "html": "0.0.10",
     "mongoose": "^4.0.1"
