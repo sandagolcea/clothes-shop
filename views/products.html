@@ -1,5 +1,5 @@
 <!-- List of products available -->
-<ul class='products' ng-repeat="product in shop.products">
+<ul class='products' ng-repeat="product in products">
   <li>
     <a href="#/products/{{product.pid}}"><h3>{{product.name}}</h3></a>
     <em class='pull-right'>price: {{product.price | currency}}</em>

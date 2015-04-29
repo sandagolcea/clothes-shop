@@ -2,16 +2,16 @@ function ShoppingCart () {
   this.items = [];
 }
 
-ShoppingCart.prototype.addItem = function(pid, name, price, quantity) {
-  if ( item = this._contains(pid) )
+ShoppingCart.prototype.addItem = function(_id, name, price, quantity) {
+  if ( item = this._contains(_id) )
     item.quantity += 1;
   else
-    this.items.push({pid: pid, name: name, price: price, quantity: quantity});
+    this.items.push({_id: _id, name: name, price: price, quantity: quantity});
 };
 
-ShoppingCart.prototype.removeItem = function(pid) {
+ShoppingCart.prototype.removeItem = function(_id) {
   for ( var i = 0; i < this.items.length; i++ )
-    if (this.items[i].pid === pid) {
+    if (this.items[i]._id === _id) {
       if (this.items[i].quantity > 1) {
         this.items[i].quantity -=1;
         return true;
@@ -32,12 +32,22 @@ ShoppingCart.prototype.totalItems = function() {
   return total;
 };
 
-ShoppingCart.prototype._contains = function(pid) {
+ShoppingCart.prototype._contains = function(_id) {
   var i;
   for (i = 0; i < this.items.length; i++) {
-    if ( this.items[i].pid === pid ) {
+    if ( this.items[i]._id === _id ) {
       return this.items[i];
     }
   }
   return false;
+};
+
+ShoppingCart.prototype.productQuantity = function(_id) {
+  var i = 0;
+  for (i = 0; i < this.items.length; i++) {
+    if ( this.items[i]._id === _id ) {
+      return this.items[i].quantity;
+    }
+  }
+  return 0;
 };

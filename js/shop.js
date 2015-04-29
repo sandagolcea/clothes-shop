@@ -1,3 +1,0 @@
-function Shop () {
-  this.products = [];
-}

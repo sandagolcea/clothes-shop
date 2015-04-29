@@ -13,11 +13,7 @@ var Category = mongoose.model('Category');
 app.use("/", express.static(__dirname));
 app.use(bodyParser.json()); 
 
-app.get('/products', function (request, response) {
-  response.sendFile(__dirname+'/products.json');
-});
-
-app.get('/test', function (req,response) {
+app.get('/products', function (req,response) {
   Product
   .find()
   .populate({path: 'category', select: 'name -_id'})

@@ -1,55 +1,38 @@
 var app = angular.module('clothesShop', ['ngRoute', 'angular.filter']);
 
-app.factory('DataFactory', ['$http', function ($http) {
+app.factory('DataFactory', function () {
   var newCart = new ShoppingCart();
-  var newShop = new Shop();
-  $http.get('products.json').success(function(data){
-    newShop.products = data;
-  });
-  return { cart: newCart, shop: newShop };
-}]);
+  return { cart: newCart };
+});
 
-app.controller('MainController', ['$scope', 'DataFactory', function ($scope, DataFactory) {
+app.controller('MainController', ['$scope', 'DataFactory', '$http', function ($scope, DataFactory, $http) {
   $scope.cart = DataFactory.cart;
-  $scope.shop = DataFactory.shop;
-
+  $http.get('products').success(function(data){
+    $scope.products = data;
+  });
 
   $scope.addToCart = function (product) {
-    if (product.quantity > 0) {
-      product.quantity -= 1;
-      $scope.cart.addItem(product.pid, product.name, product.price, 1);
-    }
+    if ( product.quantity > $scope.cart.productQuantity(product._id) )
+      $scope.cart.addItem(product._id, product.name, product.price, 1);
   }
 
   $scope.removeFromCart = function (product) {
-    if ( $scope.cart.removeItem(product.pid) )
-      product.quantity += 1;
+    $scope.cart.removeItem(product._id)
   }
 
-  $scope.cartRemoval = function (item) {
-    var i;
-    if ( $scope.cart.removeItem(item.pid) )
-    {
-      for (i = 0; i < $scope.shop.products.length; i++) {
-        if ( $scope.shop.products[i].pid === item.pid ) {
-          $scope.shop.products[i].quantity += 1 ;
-        }
-      }
-    }
-  }
 }]);
 
 app.controller('ProductRetriever', function storeController($scope, $routeParams, DataFactory) {
-    $scope.getProduct = function (pid) {
-        for (var i = 0; i < $scope.shop.products.length; i++) {
-            if ($scope.shop.products[i].pid == pid)
-                return $scope.shop.products[i];
+    $scope.getProduct = function (_id) {
+        for (var i = 0; i < $scope.products.length; i++) {
+            if ($scope.products[i]._id == _id)
+                return $scope.products[i];
         }
         return null;
     }
 
-    if ($routeParams.pid != null) {
-        $scope.product = $scope.getProduct($routeParams.pid);
+    if ($routeParams._id != null) {
+        $scope.product = $scope.getProduct($routeParams._id);
     }
 
 });
@@ -66,7 +49,7 @@ app.config(function ($routeProvider) {
       templateUrl: '/views/cart.html',
       controller: 'MainController'
     })
-    .when('/products/:pid',
+    .when('/products/:_id',
     {
       templateUrl: '/views/product.html',
       controller: 'ProductRetriever'
