@@ -21,5 +21,11 @@
     "category": "men shoes",
     "price": 50,
     "quantity": 5
+  },
+  {
+    "name": "Adidas",
+    "category": "men shoes",
+    "price": 24,
+    "quantity": 9
   }
 ]

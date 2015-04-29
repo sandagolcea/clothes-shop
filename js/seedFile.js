@@ -1,45 +1,43 @@
 require('./models.js');
+var async = require('async');
 var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 var Category = mongoose.model('Category');
 var products = require('../products.json');
 
 function createCategories(categoryNames) {
-  var pendingCategoriesNr = categoryNames.length - 1;
+  var tasks = [];
   categoryNames.forEach(function (categ) {
-    Category.create ( { name: categ },  function (err) {
-      if (err) { 
-        return handleError(err); 
-      } else { 
-        pendingCategoriesNr--;
-      }
-      if (pendingCategoriesNr == 0) {
-        seedAllProducts(products);
-      };
+    tasks.push( function(callback) {
+      Category.create ( { name: categ },  function (err, cat) {
+        callback(err, cat);
+      });
     });
   });
-}
 
-function createProduct (productName, productPrice, productQty, category) {
-  Product.create({ 
-    name: productName, 
-    categoryId: category._id,
-    price: productPrice,
-    quantity: productQty
+  async.parallel(tasks, function (err, results){
+    results.forEach(function(result) {
+      console.log('result is : '+result);
     });
+    seedAllProducts(products)
+  });
 }
 
 function seedProduct (categoryName, productName, productPrice, productQty) {
   Category.findOne({ name: categoryName })
   .exec()
-    .then(function (category) {
-        return createProduct(productName, productPrice, productQty, category);
+  .then(function (category) {
+    Product.create({ 
+      name: productName, 
+      categoryId: category._id,
+      price: productPrice,
+      quantity: productQty
     });
+  });
 }
 
 function seedAllProducts (products) {
   products.forEach(function(product){
-    console.log("***** "+product.category+" name: "+product.name+" price: "+product.price+" qty:"+product.quantity+" *****")
     seedProduct(product.category, product.name, product.price, product.quantity);
   });
 }
