@@ -2,6 +2,7 @@ require('./models.js');
 var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 var Category = mongoose.model('Category');
+var products = require('../products.json');
 
 function createCategories(categoryNames) {
   var pendingCategoriesNr = categoryNames.length - 1;
@@ -38,34 +39,9 @@ function seedProduct (categoryName, productName, productPrice, productQty) {
 
 function seedAllProducts (products) {
   products.forEach(function(product){
+    console.log("***** "+product.category+" name: "+product.name+" price: "+product.price+" qty:"+product.quantity+" *****")
     seedProduct(product.category, product.name, product.price, product.quantity);
   });
 }
 
 createCategories(['men shoes','women shoes']);
-
-var products = [{
-    'category': 'women shoes',
-    'name': 'Heels',
-    'price': 110,
-    'quantity': 4
-  },
-  {
-    'category': 'women shoes',
-    'name': 'Sandals',
-    'price': 88,
-    'quantity': 3
-  },
-  {
-    'category': 'men shoes',
-    'name': 'Timberland',
-    'price': 94,
-    'quantity': 1
-  },
-  {
-    'category': 'men shoes',
-    'name': 'Tom\'s',
-    'price': 120,
-    'quantity': 10
-  }
-]
