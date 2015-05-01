@@ -3,6 +3,6 @@ describe('angularjs homepage shop', function() {
     browser.get('http://localhost:3000');
 
     var prodList = element.all(by.repeater('product in products'));
-    expect(prodList.count()).toEqual(3);
+    expect(prodList.count()).toEqual(5);
   });
 });

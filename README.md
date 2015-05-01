@@ -21,7 +21,7 @@ With protractor
 Start mongoDB `mongod --dbpath data/db`  
 Start server `node server.js`  
 Start webDriver `webdriver-manager start --standalone`  
-Start tests `protractor conf.js`  
+Start tests `protractor e2e/conf.js` or `grunt`  
 
 
 ##to seed the db
