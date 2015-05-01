@@ -21,7 +21,7 @@ app.controller('MainController', ['$scope', 'DataFactory', '$http', function ($s
   }
 }]);
 
-app.controller('ProductRetriever', ['$scope', '$routeParams', '$http', function storeController($scope, $routeParams, $http) {
+app.controller('ProductController', ['$scope', '$routeParams', '$http', function storeController($scope, $routeParams, $http) {
     if ($routeParams.productId != null) {  
       $http.get('products/'+$routeParams.productId)
       .success( function (data) {
@@ -48,7 +48,7 @@ app.config(function ($routeProvider) {
     .when('/products/:productId',
     {
       templateUrl: '/views/product.html',
-      controller: 'ProductRetriever'
+      controller: 'ProductController'
     })
     .when('/categories', 
     {
