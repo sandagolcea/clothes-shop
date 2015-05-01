@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/homeStyle.css">
 </head>
-<body ng-controller='MainController'>
+<body>
 
   <div class="container">
     <!-- Top navigation bar -->
@@ -18,7 +18,7 @@
         <a class='navbar-text' href="#/cart">Your Cart</a>
         <a class='navbar-text' href="#/categories">Categories</a>
         <a href="#/cart">
-        <button type="button" class="btn btn-default navbar-btn btn-md navbar-right">
+        <button type="button" class="btn btn-default navbar-btn btn-md navbar-right" ng-controller='MainController'>
           <span ng-class="{orange:(cart.totalItems() > 0)}" class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
             <span ng-show='cart.totalItems() > 0'> {{cart.totalItems()}} </span></span>
         </button>

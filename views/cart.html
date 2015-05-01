@@ -4,7 +4,7 @@
     <div class='productHeader'>{{item.name}}</div>
     <p>{{item.price | currency}}</p>
     <p>qty: {{item.quantity}}</p>
-    <button ng-click='cartRemoval(item)'>Remove from cart</button>
+    <button ng-click='removeFromCart(item)'>Remove from cart</button>
   </li>
 </ul>
 <div ng-show="cart.items < 1">Your cart is currently empty..</div>

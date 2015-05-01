@@ -27,6 +27,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
+      'js/models.js',
+      'js/seedFile.js'
     ],
 
 

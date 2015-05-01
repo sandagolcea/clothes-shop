@@ -13,13 +13,23 @@ var Category = mongoose.model('Category');
 app.use("/", express.static(__dirname));
 app.use(bodyParser.json()); 
 
-app.get('/products', function (req,response) {
+app.get('/products', function (request,response) {
   Product
   .find()
   .populate({path: 'category', select: 'name -_id'})
   .exec( function (err, products) {
     if (err) return handleError(err);
     response.json(products); 
+  });
+});
+
+app.get('/products/:id', function (request, response) {
+  Product
+  .findOne({_id: request.params.id})
+  .populate({path: 'category', select: 'name -_id'})
+  .exec( function (err, product) {
+    if (err) return handleError(err);
+    response.json(product); 
   });
 });
 

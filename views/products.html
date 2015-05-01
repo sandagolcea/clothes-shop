@@ -1,7 +1,7 @@
 <!-- List of products available -->
 <ul class='products' ng-repeat="product in products">
   <li>
-    <a href="#/products/{{product.pid}}"><h3>{{product.name}}</h3></a>
+    <a href="#/products/{{product._id}}"><h3>{{product.name}}</h3></a>
     <em class='pull-right'>price: {{product.price | currency}}</em>
     <p>quantity: {{product.quantity}}</p>
     <button ng-click='addToCart(product)'>Add to cart</button>

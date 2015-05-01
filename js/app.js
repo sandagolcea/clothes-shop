@@ -19,23 +19,19 @@ app.controller('MainController', ['$scope', 'DataFactory', '$http', function ($s
   $scope.removeFromCart = function (product) {
     $scope.cart.removeItem(product._id)
   }
-
 }]);
 
-app.controller('ProductRetriever', function storeController($scope, $routeParams, DataFactory) {
-    $scope.getProduct = function (_id) {
-        for (var i = 0; i < $scope.products.length; i++) {
-            if ($scope.products[i]._id == _id)
-                return $scope.products[i];
-        }
-        return null;
+app.controller('ProductRetriever', ['$scope', '$routeParams', '$http', function storeController($scope, $routeParams, $http) {
+    if ($routeParams.productId != null) {  
+      $http.get('products/'+$routeParams.productId)
+      .success( function (data) {
+        $scope.product = data;
+      })
+      .error( function (response) {
+        $scope.productNotFound = true;
+      });
     }
-
-    if ($routeParams._id != null) {
-        $scope.product = $scope.getProduct($routeParams._id);
-    }
-
-});
+}]);
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -49,7 +45,7 @@ app.config(function ($routeProvider) {
       templateUrl: '/views/cart.html',
       controller: 'MainController'
     })
-    .when('/products/:_id',
+    .when('/products/:productId',
     {
       templateUrl: '/views/product.html',
       controller: 'ProductRetriever'

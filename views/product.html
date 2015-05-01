@@ -1,9 +1,9 @@
-  <div class="product">
+  <div ng-hide='productNotFound' class="product">
       <div class="productHeader">
         {{product.name}}
       </div>
       <p>price: {{product.price | currency}}</p>
-      <p>category: {{product.category}}</p>
+      <p>category: {{product.category.name}}</p>
       <p>items in stock: {{product.quantity}}</p>
-      
   </div>
+  <div ng-show='productNotFound'>Product not found.</div>
