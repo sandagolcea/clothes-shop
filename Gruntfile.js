@@ -15,9 +15,16 @@ module.exports = function(grunt) {
       }
     },
   },
+  watch: {
+    protractor: {
+      files: ['js/**/*.js', 'e2e/*.js'],
+      tasks: ['protractor:e2e']
+    }
+  }
 });
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-protractor-runner');
 
-  grunt.registerTask('default', ['protractor:e2e']);
+  grunt.registerTask('default', ['protractor:e2e', 'watch:protractor']);
 };
