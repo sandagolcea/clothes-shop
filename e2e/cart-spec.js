@@ -30,7 +30,20 @@ describe('angularjs shopping cart', function() {
     expect(cartList.count()).toEqual(1);
   });
 
-  xit('should remove items from cart ',function () {
+  it('should remove items from cart ',function () {
     // remove item from cart
+    element.all(by.repeater('product in products'))
+    .get(1)
+    .element(by.buttonText('Add to cart'))
+    .click();
+    // goto cart
+    element(by.linkText('Your Cart')).
+    click();
+    // remove item
+    element(by.buttonText('Remove from cart')).
+    click();
+    // check zero items in cart
+    cartList = element.all(by.repeater('item in cart.items'));
+    expect(cartList.count()).toEqual(0);
   });
 });
