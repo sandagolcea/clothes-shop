@@ -14,6 +14,5 @@ describe('MainController', function() {
     expect(scope.searchResult).toBeUndefined();
     expect(scope.searchTerm).toBeUndefined();
   });
-    
-});
 
+});
