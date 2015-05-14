@@ -12,7 +12,7 @@ describe('angularjs shopping cart', function() {
   it('should have no item in cart to begin with', function () {
     element(by.linkText('Your Cart')).
     click();
-    cartList = element.all(by.repeater('item in cart.items'));
+    cartList = element.all(by.repeater('item in items'));
     expect(cartList.count()).toEqual(0);
   });
 
@@ -26,7 +26,7 @@ describe('angularjs shopping cart', function() {
     element(by.linkText('Your Cart')).
     click();
     // check one item in cart
-    cartList = element.all(by.repeater('item in cart.items'));
+    cartList = element.all(by.repeater('item in items'));
     expect(cartList.count()).toEqual(1);
   });
 
@@ -43,7 +43,7 @@ describe('angularjs shopping cart', function() {
     element(by.buttonText('Remove from cart')).
     click();
     // check zero items in cart
-    cartList = element.all(by.repeater('item in cart.items'));
+    cartList = element.all(by.repeater('item in items'));
     expect(cartList.count()).toEqual(0);
   });
 });

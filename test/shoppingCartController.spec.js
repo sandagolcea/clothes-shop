@@ -2,31 +2,33 @@ describe('Shopping Cart', function() {
   var PROD_ID = 1234;
   var PROD_PRICE = 100;
   var PROD_QTY = 1;
+  var PROD_NAME = 'Skirt';
 
   beforeEach(module('clothesShop'));
 
   var scope, ctrl;
 
-  beforeEach(inject(function($rootScope, $controller) {
+  beforeEach(inject(function($rootScope, $controller, cartService) {
     scope = $rootScope.$new();
     ctrl = $controller('MainController', {
         $scope: scope
     });
+    cart = cartService;
   }));
 
   it('is empty by default', function() {
-    expect(scope.cart.totalItems()).toBe(0);
+    expect(cart.totalItems()).toBe(0);
   });
 
   it('can have items added to it', function() {
-    scope.cart.addItem(PROD_ID, 'Skirt', PROD_PRICE, PROD_QTY);
-    expect(scope.cart.totalItems()).toBe(1);
+    cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
+    expect(cart.totalItems()).toBe(1);
   });
 
   it('can have items removed from cart', function() {
-    scope.cart.addItem(PROD_ID, 'Skirt', PROD_PRICE, PROD_QTY);
-    scope.cart.removeItem(PROD_ID);
-    expect(scope.cart.totalItems()).toBe(0);
+    cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
+    cart.removeItem(PROD_ID);
+    expect(cart.totalItems()).toBe(0);
   }); 
    
 });

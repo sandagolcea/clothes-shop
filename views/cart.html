@@ -1,5 +1,5 @@
 <!-- Items in the shopping cart -->
-<ul class='products cart' ng-repeat='item in cart.items'>
+<ul class='products cart' ng-repeat='item in items'>
   <li class='product'>
     <div class='productHeader'>{{item.name}}</div>
     <p>{{item.price | currency}}</p>
@@ -7,4 +7,4 @@
     <button ng-click='removeFromCart(item)'>Remove from cart</button>
   </li>
 </ul>
-<div ng-show="cart.items < 1">Your cart is currently empty..</div>
+<div ng-show="items < 1">Your cart is currently empty..</div>

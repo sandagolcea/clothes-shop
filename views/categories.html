@@ -1,5 +1,5 @@
 <!-- List of products available -->
-<ul class='products' ng-repeat="prod in shop.products | unique: 'category'">
+<ul class='products' ng-repeat="prod in products | unique: 'category'">
   <li>
     <h3>{{prod.category}}</h3>
   </li>

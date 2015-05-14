@@ -1,23 +1,87 @@
 var app = angular.module('clothesShop', ['ngRoute', 'angular.filter']);
 
-app.factory('DataFactory', function () {
-  var newCart = new ShoppingCart();
-  return { cart: newCart };
+// TODO: split services and controllers into separate files
+app.service('cartService', function () {
+  var items = [];
+
+  this.addItem = function(_id, name, price, quantity) {
+    console.log('got to cart addItem');
+    if ( item = this._contains(_id) )
+      item.quantity += 1;
+    else
+      items.push({_id: _id, name: name, price: price, quantity: quantity});
+      console.log(items);
+  };
+
+  this.removeItem = function(_id) {
+    for ( var i = 0; i < items.length; i++ )
+      if (items[i]._id === _id) {
+        if (items[i].quantity > 1) {
+          items[i].quantity -=1;
+          return true;
+        }
+        else {
+          items.splice(i,1);
+          return true;
+        }
+      }
+    return false;
+  };
+
+  this.totalItems = function() {
+    var total = 0;
+    var i;
+    for ( i = 0; i < items.length; i++)
+      total += items[i].quantity
+    return total;
+  };
+
+  this._contains = function(_id) {
+    var i;
+    for (i = 0; i < items.length; i++) {
+      if ( items[i]._id === _id ) {
+        return items[i];
+      }
+    }
+    return false;
+  };
+
+  this.productQuantity = function(_id) {
+    var i = 0;
+    for (i = 0; i < items.length; i++) {
+      if ( items[i]._id === _id ) {
+        return items[i].quantity;
+      }
+    }
+    return 0;
+  };
+
+  this.items = function () {
+    return items;
+  }
 });
 
-app.controller('MainController', ['$scope', 'DataFactory', '$http', function ($scope, DataFactory, $http) {
-  $scope.cart = DataFactory.cart;
+app.controller('MainController', ['$scope', 'cartService', '$http', function ($scope, cartService, $http) {
+  var cart = cartService;
+  $scope.items = cart.items();
+
   $http.get('products').success(function(data){
     $scope.products = data;
   });
 
   $scope.addToCart = function (product) {
-    if ( product.quantity > $scope.cart.productQuantity(product._id) )
-      $scope.cart.addItem(product._id, product.name, product.price, 1);
+    if ( product.quantity > cart.productQuantity(product._id) )
+      console.log('adding to cart');
+      cart.addItem(product._id, product.name, product.price, 1);
+      console.log(items);
   }
 
   $scope.removeFromCart = function (product) {
-    $scope.cart.removeItem(product._id)
+    cart.removeItem(product._id)
+  }
+
+  $scope.totalCartItems = function () {
+    return cart.totalItems();
   }
 }]);
 
