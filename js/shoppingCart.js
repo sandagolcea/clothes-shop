@@ -1,3 +1,4 @@
+// TODO: change this to an angular service
 function ShoppingCart () {
   this.items = [];
 }

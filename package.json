@@ -35,6 +35,7 @@
     "grunt": "^0.4.5",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-protractor-runner": "^2.0.0",
+    "istanbul": "^0.3.14",
     "jasmine-core": "^2.2.0",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.8",

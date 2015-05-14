@@ -1,7 +1,10 @@
 # clothes-shop
 Practice clothes shop - build in AngularJS
 Served on a static NODE.js server
-In progress: Setting up MongoDB & NODE.js backend atm
+BackEnd in NODE.js with Express, using a MongoDB for products
+
+##Code climate
+[![Code Climate](https://codeclimate.com/github/sandagolcea/clothes-shop/badges/gpa.svg)](https://codeclimate.com/github/sandagolcea/clothes-shop)
 
 ##to run
 `git clone git@github.com:sandagolcea/clothes-shop.git`    
