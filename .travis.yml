@@ -10,6 +10,8 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - npm start > /dev/null &
   - npm run update-webdriver
+  - 'npm install -g bower grunt-cli karma'
+  - 'bower install'
   - sleep 1 # give server time to start
 
 script:

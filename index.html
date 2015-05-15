@@ -20,7 +20,7 @@
         <a href="#/cart">
         <button type="button" class="btn btn-default navbar-btn btn-md navbar-right" ng-controller='MainController'>
           <span ng-class="{orange:(totalCartItems() > 0)}" class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
-            <span ng-show='totalCartItems() > 0'> {{totalCartItems()}} </span></span>
+            <span ng-show='totalCartItems() > 0'> {{totalCartItems()}}<br>{{totalCartPrice() | currency}}</span></span>
         </button>
         </a>
       </div>
@@ -35,5 +35,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.min.js"></script>
   <!-- App Libs -->
   <script src='js/app.js'></script>
+  <script src='js/services/cartService.js'></script>
+  <script src='js/controllers/mainController.js'></script>
+  <script src='js/controllers/productController.js'></script>
 </body>
 </html>

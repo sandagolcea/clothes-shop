@@ -1,6 +1,6 @@
 describe('Shopping Cart', function() {
   var PROD_ID = 1234, PROD_PRICE = 100, PROD_QTY = 1, PROD_NAME = 'Skirt';
-  var PROD_TWO_ID = 5678, PROD_TWO_PRICE = 280;
+  var PROD_TWO_ID = 5678, PROD_TWO_PRICE = 89, PROD_TWO_QTY = 1, PROD_TWO_NAME = 'Jeans';
   var PROD_NOT_IN_CART_ID = 4321;
 
   beforeEach(module('clothesShop'));
@@ -9,28 +9,40 @@ describe('Shopping Cart', function() {
     cart = cartService;
   }));
 
+  // tests for items
+  it('has no items when it is empty', function () {
+    expect(cart.items()).toEqual([]);
+  });
+
+  it('stores items correctly', function () {
+    cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
+    cart.addItem(PROD_TWO_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
+    expect(cart.items()).toEqual([
+      { _id: PROD_ID, name: PROD_NAME, price: PROD_PRICE, quantity: PROD_QTY },
+      { _id: PROD_TWO_ID, name: PROD_NAME, price: PROD_PRICE, quantity: PROD_QTY }
+      ]);
+  });
+
   //  tests for adding items
   it('can have items added to it', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     expect(cart.totalItems()).toBe(1);
   });
 
-  it('can increment quantity', function () {
+  it('can increment an item\'s quantity', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     expect(cart.totalItems()).toBe(2);
   });
 
   // tests for removing items
-  it('can have items removed from cart', function () {
+  it('can have items removed from it', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     cart.removeItem(PROD_ID);
     expect(cart.totalItems()).toBe(0);
   }); 
 
   it('can not remove items if cart empty',function () {
-    cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
-    cart.removeItem(PROD_ID);
     cart.removeItem(PROD_ID);
     expect(cart.totalItems()).toBe(0);
   });
@@ -61,25 +73,16 @@ describe('Shopping Cart', function() {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     expect(cart.productQuantity(PROD_ID)).toBe(1);
   });
-
-  // TODO: test this by seeing that array of items = []
-  it('has no items when it is empty', function () {
-    expect(cart.items()).toEqual([]);
-  });
-
-  it('knows the items in basket are correct', function () {
-    cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
-    cart.addItem(PROD_TWO_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
-    expect(cart.items()).toEqual([
-      { _id: PROD_ID, name: PROD_NAME, price: PROD_PRICE, quantity: PROD_QTY },
-      { _id: PROD_TWO_ID, name: PROD_NAME, price: PROD_PRICE, quantity: PROD_QTY }
-      ]);
+  
+  // tests for total price
+  it('has total price zero when it does not have any items in it', function () {
+    expect(cart.totalPrice()).toEqual(0);
   });
 
   it('can calculate the total price of all items', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
-    cart.addItem(PROD_TWO_ID, PROD_NAME, PROD_TWO_PRICE, PROD_QTY);
-    var totalPrice = (PROD_PRICE * PROD_QTY) + (PROD_TWO_PRICE * PROD_QTY);
+    cart.addItem(PROD_TWO_ID, PROD_NAME, PROD_TWO_PRICE, PROD_TWO_QTY);
+    var totalPrice = (PROD_PRICE * PROD_QTY) + (PROD_TWO_PRICE * PROD_TWO_QTY);
     expect(cart.totalPrice()).toEqual(totalPrice);
   });
 });

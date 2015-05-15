@@ -15,9 +15,6 @@ goto localhost:3000
 
 ##to test
 ###Unit tests
-With jasmine+karma
-`karma start test/karma.conf.js`  
-or  
 `npm test`  
 
 ###End to End tests
@@ -31,3 +28,13 @@ Start tests `protractor e2e/conf.js` or `grunt` (to have them continuously runni
 ##to seed the db
 Open the database: `mongod --dbpath data/db`  
 Seed into the database: `node js/seedFile.js`  
+
+###Technologies:
+- MEAN stack: MongoDB, NODEjs with Express, Angular
+- unit tests: jasmine & karma
+- e2e tests: protractor
+- PhantomJS and Selenium driver, grunt
+
+###Live version
+- hosted on [Heroku](https://clothes-shop.herokuapp.com)
+- using MongoLabs for DBaaS
