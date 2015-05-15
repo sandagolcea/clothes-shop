@@ -4,7 +4,6 @@ describe('angularjs shopping cart', function() {
 
   beforeEach(function(){
     browser.get('http://localhost:3000');
-    // prodList = element.all(by.repeater('product in products'));
   });
   
   // TODO: DRY and separate to 2 test cases: 

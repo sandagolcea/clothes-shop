@@ -10,9 +10,12 @@ describe('MainController', function() {
     });
   }));
 
+  // TODO: mock service and add unit tests for this controller
   it('initialises with an empty search result and term', function() {
-    expect(scope.searchResult).toBeUndefined();
-    expect(scope.searchTerm).toBeUndefined();
+    // expect(scope.searchResult).toBeUndefined();
+    // expect(scope.searchTerm).toBeUndefined();
   });
+
+  it('', function(){});
 
 });

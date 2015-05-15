@@ -10,15 +10,16 @@ BackEnd in NODE.js with Express, using a MongoDB for products
 `git clone git@github.com:sandagolcea/clothes-shop.git`    
 `cd clothes-shop`  
 `mongod --dbpath data/db`  
-open new tab:  
-`node server.js`  
-open new tab (or simply goto localhost:3000):  
-`/usr/bin/open -a "/Applications/Google Chrome.app" 'http://localhost:3000'`  
+open server in new tab: `node server.js` or `npm start` or `nodemon`  
+goto localhost:3000  
 
 ##to test
 ###Unit tests
 With jasmine+karma
 `karma start test/karma.conf.js`  
+or  
+`npm test`  
+
 ###End to End tests
 With protractor
 Start mongoDB `mongod --dbpath data/db`  
