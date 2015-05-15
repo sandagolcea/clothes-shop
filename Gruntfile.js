@@ -26,5 +26,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-protractor-runner');
 
+  grunt.registerTask('e2e', ['protractor:e2e', 'watch:protractor']);
   grunt.registerTask('default', ['protractor:e2e', 'watch:protractor']);
 };

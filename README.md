@@ -1,16 +1,14 @@
 # clothes-shop
-Practice clothes shop - build in AngularJS
-Served on a static NODE.js server
+[![Build Status](https://travis-ci.org/sandagolcea/clothes-shop.svg?branch=master)](https://travis-ci.org/sandagolcea/clothes-shop) 
+[![Code Climate](https://codeclimate.com/github/sandagolcea/clothes-shop/badges/gpa.svg)](https://codeclimate.com/github/sandagolcea/clothes-shop)  
+Practice clothes shop - build on the MEAN stack:  
+FrontEnd: AngularJS
 BackEnd in NODE.js with Express, using a MongoDB for products
 
-##Code climate
-[![Code Climate](https://codeclimate.com/github/sandagolcea/clothes-shop/badges/gpa.svg)](https://codeclimate.com/github/sandagolcea/clothes-shop)
-
 ##to run
-`git clone git@github.com:sandagolcea/clothes-shop.git`    
+`git clone git@github.com:sandagolcea/clothes-shop.git`   
 `cd clothes-shop`  
-`mongod --dbpath data/db`  
-open server in new tab: `node server.js` or `npm start` or `nodemon`  
+`npm start`  
 goto localhost:3000  
 
 ##to test
@@ -18,22 +16,24 @@ goto localhost:3000
 `npm test`  
 
 ###End to End tests
-With protractor
-Start mongoDB `mongod --dbpath data/db`  
-Start server `node server.js`  
-Start webDriver `webdriver-manager start --standalone`  
-Start tests `protractor e2e/conf.js` or `grunt` (to have them continuously running)  
+- `npm start` - this starts both the db and the node server
+- `npm run protractor` - starting both the webdriver and protractor  
+#####for continuous run:
+- `npm start`  
+- `npm run webdriver`
+- `grunt`  
 
 
 ##to seed the db
-Open the database: `mongod --dbpath data/db`  
-Seed into the database: `node js/seedFile.js`  
+Open the database: `npm run mongodb`  
+Seed into the database: `npm seed`  
 
 ###Technologies:
 - MEAN stack: MongoDB, NODEjs with Express, Angular
 - unit tests: jasmine & karma
 - e2e tests: protractor
 - PhantomJS and Selenium driver, grunt
+- javascript, html, css, bootstrap
 
 ###Live version
 - hosted on [Heroku](https://clothes-shop.herokuapp.com)
