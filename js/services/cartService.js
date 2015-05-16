@@ -2,10 +2,10 @@ app.service('cartService', function () {
   var items = {};
 
   this.addItem = function(_id, name, price, quantity) {
-    if ( this._contains(_id) )
-      items[_id].quantity += 1;
-    else
+    if ( !this._contains(_id) )
       items[_id] = {_id: _id, name: name, price: price, quantity: quantity} ;
+    else
+      items[_id].quantity += 1;
   };
 
   this.removeItem = function(_id) {

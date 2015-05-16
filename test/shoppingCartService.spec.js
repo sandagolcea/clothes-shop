@@ -26,13 +26,12 @@ describe('Shopping Cart', function() {
   //  tests for adding items
   it('can have items added to it', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
-    expect(cart.totalItems()).toBe(1);
+    expect(cart.items().length).toEqual(1);
   });
 
   it('can increment an item\'s quantity', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
-    expect(cart.totalItems()).toBe(2);
     expect(cart.items()[0].quantity).toEqual(2);
   });
 
@@ -40,25 +39,23 @@ describe('Shopping Cart', function() {
   it('can have items removed from it', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     cart.removeItem(PROD_ID);
-    expect(cart.totalItems()).toBe(0);
+    expect(cart.items().length).toEqual(0);
   }); 
 
   it('can not remove items if cart empty',function () {
-    cart.removeItem(PROD_ID);
-    expect(cart.totalItems()).toBe(0);
+    expect(cart.removeItem(PROD_NOT_IN_CART_ID)).toBe(false);
   });
 
   it('only removes specified amount of items', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     cart.removeItem(PROD_ID);
-    expect(cart.totalItems()).toBe(1);
+    expect(cart.items()[0].quantity).toEqual(1);
   });
 
   it('can not remove an item that does not exist from the cart', function(){
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
-    cart.removeItem(PROD_NOT_IN_CART_ID);
-    expect(cart.totalItems()).toBe(1);
+    expect(cart.removeItem(PROD_NOT_IN_CART_ID)).toBe(false);
   });
 
   // testing for item total
