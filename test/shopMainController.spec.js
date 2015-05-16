@@ -1,25 +1,22 @@
 describe('MainController', function() {
   var mockCartService;
+  var TOTAL_PRICE = 100, TOTAL_CART_ITEMS = 2;
 
   beforeEach(module('clothesShop', function ($provide) {
     mockCartService = {
         data: [],
-        addItemInvoked: false,
-        removeItemInvoked: false,
         items: function () {
           return this.data;
         },
         addItem: function (_id, name, price, quantity) {
-          this.addItemInvoked = true;
         },
         removeItem: function (_id) {
-          this.removeItemInvoked = true;
         },
         totalItems: function () {
-          return 0;
+          return TOTAL_CART_ITEMS;
         },
         totalPrice: function () {
-          return 0;
+          return TOTAL_PRICE;
         },
         productQuantity: function () {
           return 0;
@@ -33,7 +30,7 @@ describe('MainController', function() {
 
   var scope, ctrl, $httpBackend, products, cartItems;
 
-  beforeEach(inject(function(_$httpBackend_,$rootScope, $controller) {
+  beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
     scope = $rootScope.$new();
     cartItems = [
       { "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1 },
@@ -53,9 +50,12 @@ describe('MainController', function() {
         {"_id":"55414cd2f53656f71c119de3","name":"Tom tom shoes","category":{"name":"men shoes"},"price":80,"quantity":2}
     ];    
     $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('products').
-      respond(products); 
-    $httpBackend.flush();
+    $httpBackend
+      .expectGET('products')
+      .respond(products); 
+    
+    $httpBackend
+      .flush();
 
   }));
 
@@ -74,32 +74,35 @@ describe('MainController', function() {
   it('adds items to cart properly', function () {
     product = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":5};
     mockCartService.setItems([product]);
+    spyOn(mockCartService,'addItem');
     scope.addToCart(product)
-    expect(mockCartService.addItemInvoked).toBe(true);
+    expect(mockCartService.addItem).toHaveBeenCalled();
     expect(scope.items).toEqual([product]);
   });
 
   it('only adds items if enough items in stock', function () {
     product_unavailable = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":0};
+    spyOn(mockCartService,'addItem');
     scope.addToCart(product_unavailable)
-    expect(mockCartService.addItemInvoked).toBe(false);
+    expect(mockCartService.addItem).not.toHaveBeenCalled();
     expect(scope.items).toEqual(cartItems);
   });
 
   it('can remove items from cart', function () {
     product = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":5};
+    spyOn(mockCartService,'removeItem');
     mockCartService.setItems([]);
     scope.removeFromCart(product);
-    expect(mockCartService.removeItemInvoked).toBe(true);
+    expect(mockCartService.removeItem).toHaveBeenCalled();
     expect(scope.items).toEqual([]);
   });
   
   it('returns the total cart items', function () {
-    expect(scope.totalCartItems()).toEqual(0);
+    expect(scope.totalCartItems()).toEqual(TOTAL_CART_ITEMS);
   });
 
   it('returns the total cart price', function () {
-    expect(scope.totalCartPrice()).toEqual(0);
+    expect(scope.totalCartPrice()).toEqual(TOTAL_PRICE);
   });
 
 });
