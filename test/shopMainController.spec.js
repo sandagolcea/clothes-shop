@@ -1,10 +1,27 @@
 describe('MainController', function() {
-  beforeEach(module('clothesShop'));
+  beforeEach(module('clothesShop', function ($provide) {
+    mockCartService = {
+        items: function () {
+          return [];
+        },
+        addItem: function (_id, name, price, quantity) {
+          return 0;
+        },
+        totalItems: function () {
+          return 0;
+        },
+        totalPrice: function () {
+          return 0;
+        }
+    };
+    $provide.value('cartService', mockCartService);
+  }));
 
   var scope, ctrl, $httpBackend;
 
   beforeEach(inject(function(_$httpBackend_,$rootScope, $controller) {
     scope = $rootScope.$new();
+
     ctrl = $controller('MainController', {
         $scope: scope
     });
@@ -19,9 +36,9 @@ describe('MainController', function() {
     $httpBackend.expectGET('products').
       respond(products); 
     $httpBackend.flush();
+
   }));
 
-  // TODO: mock service and add unit tests for this controller
   it('returns the correct products from backend', function () {
     expect(scope.products).toEqual(products);
   });
@@ -30,19 +47,20 @@ describe('MainController', function() {
     expect(scope.products.length).toEqual(5);
   });
 
-  xit('retrieves the correct cart items', function () {
-
+  it('retrieves the correct cart items', function () {
+    expect(scope.items).toEqual([]);
   });
+
   xit('adds items to cart properly', function(){});
   xit('only adds items if enough items in stock', function(){});
   xit('can remove items from cart', function(){});
-  xit('returns the total cart items', function(){});
-  xit('returns the total cart price', function(){});
+  
+  it('returns the total cart items', function(){
+    expect(scope.totalCartItems()).toEqual(0);
+  });
 
-  // example syntax
-  // it('does things', function() {
-    // expect(scope.searchResult).toBeUndefined();
-    // expect(scope.searchTerm).toBeUndefined();
-  // });
+  it('returns the total cart price', function () {
+    expect(scope.totalCartPrice()).toEqual(0);
+  });
 
 });
