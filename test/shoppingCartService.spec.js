@@ -33,6 +33,7 @@ describe('Shopping Cart', function() {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     expect(cart.totalItems()).toBe(2);
+    expect(cart.items()[0].quantity).toEqual(2);
   });
 
   // tests for removing items
@@ -47,12 +48,19 @@ describe('Shopping Cart', function() {
     expect(cart.totalItems()).toBe(0);
   });
 
+  it('only removes specified amount of items', function () {
+    cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
+    cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
+    cart.removeItem(PROD_ID);
+    expect(cart.totalItems()).toBe(1);
+  });
+
   it('can not remove an item that does not exist from the cart', function(){
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY);
     cart.removeItem(PROD_NOT_IN_CART_ID);
     expect(cart.totalItems()).toBe(1);
   });
-  
+
   // testing for item total
   it('is empty by default', function () {
     expect(cart.totalItems()).toBe(0);

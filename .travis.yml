@@ -16,4 +16,3 @@ before_script:
 
 script:
   - ./node_modules/karma/bin/karma start test/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=PhantomJS
-  - ./node_modules/.bin/protractor e2e/conf.js --browser=firefox

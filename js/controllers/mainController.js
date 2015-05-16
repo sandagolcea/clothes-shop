@@ -7,12 +7,15 @@ app.controller('MainController', ['$scope', 'cartService', '$http', function ($s
   });
 
   $scope.addToCart = function (product) {
-    if ( product.quantity > cart.productQuantity(product._id) )
+    if ( product.quantity > cart.productQuantity(product._id) ) {
       cart.addItem(product._id, product.name, product.price, 1);
+      $scope.items = cart.items();
+    }
   }
 
   $scope.removeFromCart = function (product) {
     cart.removeItem(product._id)
+    $scope.items = cart.items();
   }
 
   $scope.totalCartItems = function () {

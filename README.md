@@ -2,8 +2,8 @@
 [![Build Status](https://travis-ci.org/sandagolcea/clothes-shop.svg?branch=master)](https://travis-ci.org/sandagolcea/clothes-shop) 
 [![Code Climate](https://codeclimate.com/github/sandagolcea/clothes-shop/badges/gpa.svg)](https://codeclimate.com/github/sandagolcea/clothes-shop)  
 Practice clothes shop - build on the MEAN stack:  
-FrontEnd: AngularJS
-BackEnd in NODE.js with Express, using a MongoDB for products
+FrontEnd: AngularJS  
+BackEnd: NODE.js with Express, using a MongoDB for products  
 
 ##to run
 `git clone git@github.com:sandagolcea/clothes-shop.git`   
@@ -18,6 +18,7 @@ goto localhost:3000
 ###End to End tests
 - `npm start` - this starts both the db and the node server
 - `npm run protractor` - starting both the webdriver and protractor  
+
 #####for continuous run:
 - `npm start`  
 - `npm run webdriver`

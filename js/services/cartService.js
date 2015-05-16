@@ -1,66 +1,59 @@
 app.service('cartService', function () {
-  var items = [];
+  var items = {};
 
   this.addItem = function(_id, name, price, quantity) {
-    if ( item = this._contains(_id) )
-      item.quantity += 1;
+    if ( this._contains(_id) )
+      items[_id].quantity += 1;
     else
-      items.push({_id: _id, name: name, price: price, quantity: quantity});
+      items[_id] = {_id: _id, name: name, price: price, quantity: quantity} ;
   };
 
   this.removeItem = function(_id) {
-    for ( var i = 0; i < items.length; i++ )
-      if (items[i]._id === _id) {
-        if (items[i].quantity > 1) {
-          items[i].quantity -=1;
-          return true;
-        }
-        else {
-          items.splice(i,1);
-          return true;
-        }
-      }
+    if ( this._contains(_id) ) {
+      items[_id].quantity > 1 ? items[_id].quantity-- : delete items[_id];
+      return true;
+    }
     return false;
   };
 
   this.totalItems = function() {
     var total = 0;
-    var i;
-    for ( i = 0; i < items.length; i++)
-      total += items[i].quantity
+    for (var index in items) {
+      total += items[index].quantity;
+    }
     return total;
   };
 
   this.productQuantity = function(_id) {
-    var i = 0;
-    for (i = 0; i < items.length; i++) {
-      if ( items[i]._id === _id ) {
-        return items[i].quantity;
-      }
+    if ( this._contains(_id) ) {
+      return items[_id].quantity;
     }
     return 0;
   };
 
   this.items = function () {
-    return items;
+    var itemsArray = [];
+    for (var index in items) {
+      itemsArray.push(items[index])
+    }
+    return itemsArray;
   };
 
   this.totalPrice = function () {
     var total = 0;
-    var i;
-    for ( i = 0; i < items.length; i++)
-      total += items[i].quantity * items[i].price
+    for ( var index in items)
+      total += items[index].quantity * items[index].price
     return total;
   };
 
   this._contains = function(_id) {
-    var i;
-    for (i = 0; i < items.length; i++) {
-      if ( items[i]._id === _id ) {
-        return items[i];
-      }
-    }
-    return false;
+    return _id in items;
   };
 
 });
+
+// items structure now looks like:
+// items = {
+//  123: {id: 123, name:'skirt',..} , 
+//  456: {id: 456, name:'jeans',..} 
+// }
