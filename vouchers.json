@@ -1,0 +1,19 @@
+[{
+    "code": "SHOP5OFF",
+    "discount": 5,
+    "category": "",
+    "minimumSpent": 0
+  },
+  {
+    "code": "10OVER50",
+    "discount": 10,
+    "category": "",
+    "minimumSpent": 50
+  },
+  {
+    "code": "15OVER75SHOES",
+    "discount": 10,
+    "category": "men shoes",
+    "minimumSpent": 75
+  }
+]

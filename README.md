@@ -28,6 +28,8 @@ goto localhost:3000
 ##to seed the db
 Open the database: `npm run mongodb`  
 Seed into the database: `npm seed`  
+To remove all the records in the database:
+`node flushDB.js`  
 
 ###Technologies:
 - MEAN stack: MongoDB, NODEjs with Express, Angular

@@ -9,6 +9,7 @@ require('./js/models.js');
 
 var Product = mongoose.model('Product');
 var Category = mongoose.model('Category');
+var Voucher = mongoose.model('Voucher');
 
 app.use("/", express.static(__dirname));
 app.use(bodyParser.json()); 

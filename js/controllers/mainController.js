@@ -11,18 +11,18 @@ app.controller('MainController', ['$scope', 'cartService', '$http', function ($s
       cart.addItem(product._id, product.name, product.price, 1);
       $scope.items = cart.items();
     }
-  }
+  };
 
   $scope.removeFromCart = function (product) {
     cart.removeItem(product._id)
     $scope.items = cart.items();
-  }
+  };
 
   $scope.totalCartItems = function () {
     return cart.totalItems();
-  }
+  };
 
   $scope.totalCartPrice = function () {
     return cart.totalPrice();
-  }
+  };
 }]);

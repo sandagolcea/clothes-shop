@@ -13,8 +13,17 @@ var productSchema = new Schema({
   quantity: Number
 });
 
+var voucherSchema = new Schema({
+  code: String,
+  discount: Number,
+  category: { type: ObjectId, ref: 'Category', index: true },
+  minimumSpent: Number,
+  expirationDate: Date
+});
+
 mongoose.model('Category', categorySchema);
 mongoose.model('Product', productSchema);
+mongoose.model('Voucher', voucherSchema);
 
 // for local development:
 mongoose.connect('mongodb://localhost/test');
