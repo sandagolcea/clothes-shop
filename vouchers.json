@@ -15,5 +15,11 @@
     "discount": 10,
     "category": "men shoes",
     "minimumSpent": 75
+  },
+  {
+    "code": "EXPIRED",
+    "discount": 20,
+    "category": "",
+    "minimumSpent": 75
   }
 ]

@@ -9,6 +9,12 @@ var Voucher = mongoose.model('Voucher');
 var products = require('../products.json');
 var vouchers = require('../vouchers.json');
 
+// 30 days later
+var futureDate = new Date();
+futureDate.setDate(futureDate.getDate() + 30);
+var expiredDate = new Date();
+expiredDate.setDate(expiredDate.getDate() - 30);
+
 function createCategories(categoryNames) {
   async.each(categoryNames, function (category, callback) {
       Category.create ( { name: category },  function (err, cat) {
@@ -44,6 +50,12 @@ function seedAllProducts (products) {
 
 function seedVouchers (vouchers) {
   vouchers.forEach( function (voucher) {
+    var date;
+    if (voucher.code === "EXPIRED") {
+      date = expiredDate;
+    } else {
+      date = futureDate;
+    }
     if (voucher.category) { 
       Category.findOne({ name: voucher.category })
       .exec()
@@ -52,14 +64,16 @@ function seedVouchers (vouchers) {
           code: voucher.code,
           discount: voucher.discount,
           category: category._id,
-          minimumSpent: voucher.minimumSpent
+          minimumSpent: voucher.minimumSpent,
+          expirationDate: date
         });  
       });
     } else {
       Voucher.create({
         code: voucher.code,
         discount: voucher.discount,
-        minimumSpent: voucher.minimumSpent
+        minimumSpent: voucher.minimumSpent,
+        expirationDate: date
       });
     }
   });

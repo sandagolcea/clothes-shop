@@ -34,6 +34,22 @@ app.get('/products/:id', function (request, response) {
   });
 });
 
+app.get('/vouchers/:voucherCode', function (request, response) {
+  var now = new Date();
+  Voucher
+  .findOne({code: request.params.voucherCode})
+  .populate({path: 'category', select: 'name -_id'})
+  .exec( function (err, voucher) {
+    if (err) return handleError(err);
+    if (!voucher || now > voucher.expirationDate) {
+      response.status(404);
+      response.send('You shall not pass!');
+    } else {
+        response.json(voucher)
+    }
+  });
+});
+
 app.get('/shoppingCart/:userId', function (request, response) {
   response.sendFile(__dirname+'/shoppingCart'+request.params.userId+'.json');
 });
