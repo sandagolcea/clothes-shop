@@ -49,6 +49,10 @@ app.service('cartService', function () {
     return total;
   };
 
+  this.applyVoucher = function (code) {
+    return voucherService.addVoucherAsync(code, items, this.totalPrice());
+  }
+
   
   this.vouchers = function () {
     // var vouchers = vouchers.getVouchers..  from voucher service

@@ -1,20 +1,25 @@
-app.service('voucherService', ['$http', function ($http) {
+app.service('voucherService', ['$http', '$q', function ($http, $q) {
   var vouchersUsed = [];
   var service = this;
 
   this.addVoucherAsync = function (code, items, total) {
-    var voucher;
+    var deferred = $q.defer();
     // retrieve voucher
     $http.get('vouchers/'+code)
     .success( function (data) {
-      voucher = data;
+      var voucher = data;
       if ( service._validateVoucher(voucher, items, total) ) {
         vouchersUsed.push( voucher );
-      };
+        deferred.resolve("Voucher applied.");
+      } else {
+        deferred.reject('Voucher not valid.');
+      }
     })
     .error (function (response) {
-      console.log('voucher not found');
+      deferred.reject("Voucher not found or expired.");
     });
+
+    return deferred.promise;
   };
 
   this._validateVoucher = function (voucher, items, total) {

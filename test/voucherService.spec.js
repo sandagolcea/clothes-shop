@@ -97,5 +97,73 @@ describe('Voucher Service', function() {
     expect(service.vouchers().length).toBe(0);
   });
 
+  it('Should give a message to say voucher applied', inject(function ($rootScope) {
+    $httpBackend
+      .expectGET('vouchers/'+CODE)
+      .respond(data);
+
+    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 2, "category":{"name":"men shoes"} }];
+    var total = 100;
+    var myPromise = service.addVoucherAsync(CODE, items, total);
+    var resolvedValue;
+
+    myPromise.then(function(value) { resolvedValue = value; });
+
+    $httpBackend.flush();
+    $rootScope.$apply();
+
+    expect(resolvedValue).toEqual("Voucher applied.");
+  }));
+
+  it('Should warn if the voucher is not valid', inject(function ($q, $rootScope) {
+    var EXPIRED_CODE = 'EXPIRED';
+
+    $httpBackend
+      .expectGET('vouchers/'+EXPIRED_CODE)
+      .respond({
+        "code": "EXPIRED",
+        "discount": 20,
+        "category": "",
+        "minimumSpent": 75
+      });
+
+    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":{"name":"men shoes"} }];
+    var total = 50;
+    var resolvedValue;
+
+    var myPromise = service.addVoucherAsync(EXPIRED_CODE, items, total);
+    myPromise.then(
+      function (success) {},
+      function (value) { resolvedValue = value; }
+    );
+
+    $httpBackend.flush();
+    $rootScope.$apply();
+
+    expect(resolvedValue).toEqual("Voucher not valid.");
+  }));
+
+  it('Should warn if the voucher has not been found', inject(function ($q, $rootScope) {
+    var CODE_NOT_FOUND = 'ABDC';
+
+    $httpBackend
+      .expectGET('vouchers/'+CODE_NOT_FOUND)
+      .respond(404,"Voucher not found.");
+
+    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":{"name":"men shoes"} }];
+    var total = 50;
+    var resolvedValue;
+
+    var myPromise = service.addVoucherAsync(CODE_NOT_FOUND, items, total);
+    myPromise.then(
+      function (success) {},
+      function (value) { resolvedValue = value; }
+    );
+
+    $httpBackend.flush();
+    $rootScope.$apply();
+
+    expect(resolvedValue).toEqual("Voucher not found or expired.");
+  }));
 });
 
