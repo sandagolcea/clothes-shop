@@ -33,8 +33,8 @@ describe('MainController', function() {
   beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
     scope = $rootScope.$new();
     cartItems = [
-      { "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1 },
-      { "_id": "55414cd2f53656f71c119de3", "name": "Tom tom shoes", "price": 80, "quantity": 1 }
+      { "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":{"name":"men shoes"} },
+      { "_id": "55414cd2f53656f71c119de3", "name": "Tom tom shoes", "price": 80, "quantity": 1, "category":{"name":"men shoes"} }
     ];
     mockCartService.setItems(cartItems);
 
@@ -72,7 +72,7 @@ describe('MainController', function() {
   });
 
   it('adds items to cart properly', function () {
-    product = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":5};
+    product = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":5, "category": {"name": "women shoes"}};
     mockCartService.setItems([product]);
     spyOn(mockCartService,'addItem');
     scope.addToCart(product)
@@ -81,7 +81,7 @@ describe('MainController', function() {
   });
 
   it('only adds items if enough items in stock', function () {
-    product_unavailable = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":0};
+    product_unavailable = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":0, "category": {"name": "women shoes"}};
     spyOn(mockCartService,'addItem');
     scope.addToCart(product_unavailable)
     expect(mockCartService.addItem).not.toHaveBeenCalled();
@@ -89,7 +89,7 @@ describe('MainController', function() {
   });
 
   it('can remove items from cart', function () {
-    product = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":5};
+    product = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":5, "category": {"name": "women shoes"}};
     spyOn(mockCartService,'removeItem');
     mockCartService.setItems([]);
     scope.removeFromCart(product);

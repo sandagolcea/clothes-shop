@@ -45,7 +45,8 @@ app.get('/vouchers/:voucherCode', function (request, response) {
       response.status(404);
       response.send('You shall not pass!');
     } else {
-        response.json(voucher)
+      // TODO: don't show expiration date;
+      response.json(voucher)
     }
   });
 });

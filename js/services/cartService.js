@@ -1,9 +1,10 @@
 app.service('cartService', function () {
+  // TODO: store cart in local storage service for cookieees retrieval;
   var items = {};
 
-  this.addItem = function(_id, name, price, quantity) {
+  this.addItem = function(_id, name, price, quantity, category) {
     if ( !this._contains(_id) )
-      items[_id] = {_id: _id, name: name, price: price, quantity: quantity} ;
+      items[_id] = {_id: _id, name: name, price: price, quantity: quantity, category: category};
     else
       items[_id].quantity += 1;
   };
@@ -43,8 +44,15 @@ app.service('cartService', function () {
     var total = 0;
     for ( var index in items)
       total += items[index].quantity * items[index].price
+    // before checkout see if any vouchers with discounts apply
+    // calling method getVouchers
     return total;
   };
+
+  
+  this.vouchers = function () {
+    // var vouchers = vouchers.getVouchers..  from voucher service
+  }
 
   this._contains = function(_id) {
     return _id in items;
