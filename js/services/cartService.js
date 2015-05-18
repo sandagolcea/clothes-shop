@@ -46,6 +46,9 @@ app.service('cartService', ['voucherService', function (voucherService) {
       total += items[index].quantity * items[index].price
     // before checkout see if any vouchers with discounts apply
     // calling method getVouchers
+    this.vouchers().forEach(function(voucher) {
+      total -= voucher.discount;
+    });
     return total;
   };
 
@@ -55,7 +58,7 @@ app.service('cartService', ['voucherService', function (voucherService) {
 
   
   this.vouchers = function () {
-    // var vouchers = vouchers.getVouchers..  from voucher service
+    return voucherService.vouchers();
   }
 
   this._contains = function(_id) {

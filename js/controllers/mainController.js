@@ -1,6 +1,7 @@
 app.controller('MainController', ['$scope', 'cartService', '$http', function ($scope, cartService, $http) {
   var cart = cartService;
   $scope.items = cart.items();
+  $scope.vouchers = cart.vouchers();
 
   $http.get('products').success(function(data){
     $scope.products = data;
@@ -30,6 +31,7 @@ app.controller('MainController', ['$scope', 'cartService', '$http', function ($s
     cart.applyVoucher(code)
       .then(function (success) {
        $scope.voucherMessage = success; 
+       $scope.vouchers = cart.vouchers();
       },
       function (error) {
         $scope.voucherMessage = error; 

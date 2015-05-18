@@ -4,7 +4,14 @@ describe('Shopping Cart', function() {
   var PROD_NOT_IN_CART_ID = 4321;
   var cart;
 
-  beforeEach(module('clothesShop'));
+  beforeEach(module('clothesShop', function($provide) {
+    mockVoucherService = {
+      vouchers: function () {
+        return [];
+      }
+    };
+   $provide.value('voucherService', mockVoucherService);
+  }));
 
   beforeEach(inject(function(cartService) {
     cart = cartService;

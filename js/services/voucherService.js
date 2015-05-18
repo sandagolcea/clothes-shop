@@ -39,19 +39,3 @@ app.service('voucherService', ['$http', '$q', function ($http, $q) {
     return vouchersUsed;
   };
 }]);
-
-// inject voucher service in cart service;
-// textbox + button in cart view (action in cartService = applyVoucher()) =>
-// calls voucherService =>
-
-// vouchersUsed = [];
-// this.addVoucher(code, items)
-// req to the server to see if voucher is valid;
-// return error if voucher not valid
-
-// this._validateVoucher
-// -> if minimumSpent > 0, check min spend etc..
-// -> if category required, check at least one has category
-// -> if checksOut => return code and discount && store it in vouchersUsed.
-
-// this.getAppliedVouchers => [{code: "EHSI", discount: 10}, {..}..]

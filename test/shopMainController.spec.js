@@ -24,6 +24,9 @@ describe('MainController', function() {
         setItems: function (itemsArray) {
           this.data = itemsArray;          
         },
+        applyVoucher: function (code) {
+        },
+        vouchers: function (){}
     };
     $provide.value('cartService', mockCartService);
   }));
