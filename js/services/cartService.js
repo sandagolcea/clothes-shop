@@ -1,4 +1,4 @@
-app.service('cartService', function () {
+app.service('cartService', ['voucherService', function (voucherService) {
   // TODO: store cart in local storage service for cookieees retrieval;
   var items = {};
 
@@ -62,7 +62,7 @@ app.service('cartService', function () {
     return _id in items;
   };
 
-});
+}]);
 
 // items structure now looks like:
 // items = {

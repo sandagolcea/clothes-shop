@@ -7,4 +7,7 @@
     <button ng-click='removeFromCart(item)'>Remove from cart</button>
   </li>
 </ul>
+<input type="text" ng-model="code">
+<button ng-click='applyVoucher(code)'>Apply Voucher</button>
+<div ng-show="voucherMessage">{{voucherMessage}}</div>
 <div ng-show="items < 1">Your cart is currently empty..</div>

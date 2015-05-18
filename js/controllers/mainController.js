@@ -26,7 +26,13 @@ app.controller('MainController', ['$scope', 'cartService', '$http', function ($s
     return cart.totalPrice();
   };
 
-  $scope.applyVoucher = function () {
-    // cart.applyVoucher(...).then(function(result) { ...$scope.VoucherMessage = result; })
+  $scope.applyVoucher = function (code) {
+    cart.applyVoucher(code)
+      .then(function (success) {
+       $scope.voucherMessage = success; 
+      },
+      function (error) {
+        $scope.voucherMessage = error; 
+      });
   }
 }]);
