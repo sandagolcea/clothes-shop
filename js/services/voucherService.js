@@ -1,24 +1,39 @@
-app.service('voucherService', function () {
+app.service('voucherService', ['$http', function ($http) {
+  var vouchersUsed = [];
+  var service = this;
 
-  this.addVoucherAsync = function (code, items) {
-
+  this.addVoucherAsync = function (code, items, total) {
+    var voucher;
+    // retrieve voucher
+    $http.get('vouchers/'+code)
+    .success( function (data) {
+      voucher = data;
+      if ( service._validateVoucher(voucher, items, total) ) {
+        vouchersUsed.push( voucher );
+      };
+    })
+    .error (function (response) {
+      console.log('voucher not found');
+    });
   };
 
-  this._validateVoucher = function (voucher, items) {
-    if ( voucher.minimumSpent ) {
-      // if minimSpent < items total price, return false
-    };
-
+  this._validateVoucher = function (voucher, items, total) {
+    var minSpentOK = true, categoryOK = true;
+    // voucher has minimum spending requirement
+    ( total >= voucher.minimumSpent ) ? minSpentOK = true : minSpentOK = false;
+    // voucher category requirement
     if ( voucher.category ) {
-      return items.some(function (item) {
+      categoryOK = items.some(function (item) {
         return item.category.name == voucher.category;
       });
     };
-    return true;
+    return (minSpentOK && categoryOK);
   };
-});
 
-// do TDD
+  this.vouchers = function () {
+    return vouchersUsed;
+  };
+}]);
 
 // inject voucher service in cart service;
 // textbox + button in cart view (action in cartService = applyVoucher()) =>
@@ -30,8 +45,8 @@ app.service('voucherService', function () {
 // return error if voucher not valid
 
 // this._validateVoucher
-// -> if category required, check at least one has category
 // -> if minimumSpent > 0, check min spend etc..
+// -> if category required, check at least one has category
 // -> if checksOut => return code and discount && store it in vouchersUsed.
 
 // this.getAppliedVouchers => [{code: "EHSI", discount: 10}, {..}..]
