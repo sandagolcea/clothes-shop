@@ -2,12 +2,24 @@ describe('Shopping Cart', function() {
   var PROD_ID = 1234, PROD_PRICE = 100, PROD_QTY = 1, PROD_NAME = 'Boots', PROD_CATEGORY = 'women shoes';
   var PROD_TWO_ID = 5678, PROD_TWO_PRICE = 89, PROD_TWO_QTY = 1, PROD_TWO_NAME = 'Converse Shoes', PROD_TWO_CATEGORY = 'men shoes';
   var PROD_NOT_IN_CART_ID = 4321;
+  var VALID_VOUCHER_CODE = "SHOP5OFF";
+  var VALID_VOUCHER = {
+    "code": "SHOP5OFF",
+    "discount": 5,
+    "category": "",
+    "minimumSpent": 0
+  };
   var cart;
 
   beforeEach(module('clothesShop', function($provide) {
     mockVoucherService = {
       vouchers: function () {
-        return [];
+        return voucherList;
+      },
+      addVoucherAsync: function (code, items, total) {
+      },
+      setVouchers : function (vouchers) {
+        voucherList = vouchers;
       }
     };
    $provide.value('voucherService', mockVoucherService);
@@ -89,14 +101,25 @@ describe('Shopping Cart', function() {
   
   // tests for total price
   it('has total price zero when it does not have any items in it', function () {
+    mockVoucherService.setVouchers([]);
     expect(cart.totalPrice()).toEqual(0);
   });
 
   it('can calculate the total price of all items', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY, PROD_CATEGORY);
     cart.addItem(PROD_TWO_ID, PROD_NAME, PROD_TWO_PRICE, PROD_TWO_QTY, PROD_TWO_CATEGORY);
+    mockVoucherService.setVouchers([]);
     var totalPrice = (PROD_PRICE * PROD_QTY) + (PROD_TWO_PRICE * PROD_TWO_QTY);
     expect(cart.totalPrice()).toEqual(totalPrice);
   });
+
+  // with vouchers
+  it('can calculate the total and apply a voucher', function () {
+    cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY, PROD_CATEGORY);
+    mockVoucherService.setVouchers([VALID_VOUCHER]);
+    cart.applyVoucher(VALID_VOUCHER_CODE);
+    expect(cart.totalPrice()).toEqual(PROD_PRICE - VALID_VOUCHER.discount);
+  });
+
 });
 

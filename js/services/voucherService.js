@@ -23,16 +23,24 @@ app.service('voucherService', ['$http', '$q', function ($http, $q) {
   };
 
   this._validateVoucher = function (voucher, items, total) {
-    var minSpentOK = true, categoryOK = true;
+    // TODO: remove duplicate vouchers
+    var minSpentOK = true, categoryOK = true, duplicatedVoucher = false;
+
+    // searching for duplicated voucher
+    duplicatedVoucher = this.vouchers().some( function (duplicate) {
+      return duplicate.code === voucher.code; 
+    });
+
     // voucher has minimum spending requirement
     ( total >= voucher.minimumSpent ) ? minSpentOK = true : minSpentOK = false;
+
     // voucher category requirement
     if ( voucher.category ) {
       categoryOK = items.some(function (item) {
-        return item.category.name == voucher.category;
+        return item.category.name === voucher.category;
       });
     };
-    return (minSpentOK && categoryOK);
+    return (minSpentOK && categoryOK && !duplicatedVoucher);
   };
 
   this.vouchers = function () {

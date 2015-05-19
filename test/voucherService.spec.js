@@ -1,7 +1,12 @@
 describe('Voucher Service', function() {
   var CODE = 'SHOP5OFF';
   var data = {"code": "SHOP5OFF", "discount": 5, "category": "", "minimumSpent": 0 };
-  
+  var VALID_VOUCHER = {
+      "code": "SHOP5OFF",
+      "discount": 5,
+      "category": "",
+      "minimumSpent": 0
+  }  
   beforeEach(module('clothesShop'));
 
   var service, $httpBackend;
@@ -12,15 +17,9 @@ describe('Voucher Service', function() {
   }));
 
   it('validates a voucher with - no req category or min spent', function() {
-    voucher = {
-      "code": "SHOP5OFF",
-      "discount": 5,
-      "category": "",
-      "minimumSpent": 0
-    };
     items = [];
     total = 0;
-    expect(service._validateVoucher(voucher, items, total)).toBe(true);
+    expect(service._validateVoucher(VALID_VOUCHER, items, total)).toBe(true);
   });
 
   it('validates a voucher - that has items from requested category', function () {
@@ -97,7 +96,7 @@ describe('Voucher Service', function() {
     expect(service.vouchers().length).toBe(0);
   });
 
-  it('Should give a message to say voucher applied', inject(function ($rootScope) {
+  it('should give a message to say voucher applied', inject(function ($rootScope) {
     $httpBackend
       .expectGET('vouchers/'+CODE)
       .respond(data);
@@ -115,7 +114,7 @@ describe('Voucher Service', function() {
     expect(resolvedValue).toEqual("Voucher applied.");
   }));
 
-  it('Should warn if the voucher is not valid', inject(function ($q, $rootScope) {
+  it('should warn if the voucher is not valid', inject(function ($q, $rootScope) {
     var EXPIRED_CODE = 'EXPIRED';
 
     $httpBackend
@@ -143,7 +142,7 @@ describe('Voucher Service', function() {
     expect(resolvedValue).toEqual("Voucher not valid.");
   }));
 
-  it('Should warn if the voucher has not been found', inject(function ($q, $rootScope) {
+  it('should warn if the voucher has not been found', inject(function ($rootScope) {
     var CODE_NOT_FOUND = 'ABDC';
 
     $httpBackend
@@ -165,5 +164,23 @@ describe('Voucher Service', function() {
 
     expect(resolvedValue).toEqual("Voucher not found or expired.");
   }));
+
+  it('should not let you add a duplicate voucher', function () {
+    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 2, "category":{"name":"men shoes"} }];
+    var total = 100;
+    
+    $httpBackend
+      .expectGET('vouchers/'+CODE)
+      .respond(VALID_VOUCHER);
+    service.addVoucherAsync(CODE, items, total);
+
+    $httpBackend
+      .expectGET('vouchers/'+CODE)
+      .respond(VALID_VOUCHER);
+    service.addVoucherAsync(CODE, items, total);
+
+    $httpBackend.flush();
+    expect(service.vouchers().length).toBe(1);
+  });
 });
 

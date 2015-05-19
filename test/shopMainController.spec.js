@@ -1,6 +1,12 @@
 describe('MainController', function() {
   var mockCartService;
   var TOTAL_PRICE = 100, TOTAL_CART_ITEMS = 2;
+  var VALID_VOUCHER = {
+      "code": "SHOP5OFF",
+      "discount": 5,
+      "category": "",
+      "minimumSpent": 0
+  };
 
   beforeEach(module('clothesShop', function ($provide) {
     mockCartService = {
@@ -25,8 +31,11 @@ describe('MainController', function() {
           this.data = itemsArray;          
         },
         applyVoucher: function (code) {
+
         },
-        vouchers: function (){}
+        vouchers: function (){
+          return [];
+        }
     };
     $provide.value('cartService', mockCartService);
   }));
@@ -108,4 +117,35 @@ describe('MainController', function() {
     expect(scope.totalCartPrice()).toEqual(TOTAL_PRICE);
   });
 
+  it('should have vouchers updated on instantiating the cart', function () {
+    expect(scope.vouchers).toEqual([]);
+  });
+
+  it('should give an error message if applying invalid voucher', inject(function ($q, $rootScope) {
+    var deferred = $q.defer();
+    spyOn(mockCartService, 'applyVoucher').and.returnValue(deferred.promise);
+    deferred.reject('Voucher not found or expired.');
+    scope.applyVoucher('EXPIRED');
+    $rootScope.$apply();
+    expect(scope.voucherMessage).toBe('Voucher not found or expired.');
+  }));
+
+  it('should give an error message if applying invalid voucher', inject(function ($q, $rootScope) {
+    var deferred = $q.defer();
+    spyOn(mockCartService, 'applyVoucher').and.returnValue(deferred.promise);
+    deferred.resolve('Voucher applied.');
+    scope.applyVoucher('SHOP5OFF');
+    $rootScope.$apply();
+    expect(scope.voucherMessage).toBe('Voucher applied.');
+  }));
+
+  it('should set the vouchers when appling the voucher is successful', inject(function ($q, $rootScope) {
+    var deferred = $q.defer();
+    spyOn(mockCartService, 'vouchers').and.returnValue([VALID_VOUCHER]);
+    spyOn(mockCartService, 'applyVoucher').and.returnValue(deferred.promise);
+    deferred.resolve('Voucher applied.');
+    scope.applyVoucher('SHOP5OFF');
+    $rootScope.$apply();
+    expect(scope.vouchers).toEqual([VALID_VOUCHER]);
+  }));
 });

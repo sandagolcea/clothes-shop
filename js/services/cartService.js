@@ -58,6 +58,7 @@ app.service('cartService', ['voucherService', function (voucherService) {
 
   
   this.vouchers = function () {
+    // console.log("** your vouchers **"+this.vouchers());
     return voucherService.vouchers();
   }
 
