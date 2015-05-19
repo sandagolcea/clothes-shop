@@ -23,27 +23,34 @@ app.service('voucherService', ['$http', '$q', function ($http, $q) {
   };
 
   this._validateVoucher = function (voucher, items, total) {
-    // TODO: remove duplicate vouchers
-    var minSpentOK = true, categoryOK = true, duplicatedVoucher = false;
 
-    // searching for duplicated voucher
-    duplicatedVoucher = this.vouchers().some( function (duplicate) {
-      return duplicate.code === voucher.code; 
-    });
+    if (this._isDuplicated(voucher)) { return false; }
+    if (!this._isValid(voucher.category, items)) { return false; }
+    if (!this._hasMinimumSpent(voucher, total)) { return false; }
 
-    // voucher has minimum spending requirement
-    ( total >= voucher.minimumSpent ) ? minSpentOK = true : minSpentOK = false;
-
-    // voucher category requirement
-    if ( voucher.category ) {
-      categoryOK = items.some(function (item) {
-        return item.category.name === voucher.category;
-      });
-    };
-    return (minSpentOK && categoryOK && !duplicatedVoucher);
+    return true;
   };
 
   this.vouchers = function () {
     return vouchersUsed;
   };
+
+  this._isDuplicated = function (voucher) {
+    return this.vouchers().some( function (duplicate) {
+      return duplicate.code === voucher.code; 
+    });
+  };
+
+  this._isValid = function (category, items) {
+    if (category) {
+      return items.some(function (item) {
+        return item.category.name === category;
+      });
+    }
+    return true;
+  };
+
+  this._hasMinimumSpent = function (voucher, total) {
+    return total >= voucher.minimumSpent;
+  }
 }]);

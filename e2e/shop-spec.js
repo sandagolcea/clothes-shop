@@ -7,14 +7,14 @@ describe('angularjs homepage shop', function() {
   });
 
   it('should list all products', function() {
-    expect(prodList.count()).toEqual(5);
+    expect(prodList.count()).toEqual(13);
   });
 
   it('should get to a product\'s information when clicking on it', function() {
     myElem = element.all(by.repeater('product in products'))
-    .get(1)
-    .element(by.linkText('Adidas'))
+    .get(0)
+    .element(by.linkText('Suede Shoes'))
     .click();
-    expect(element(by.id('productHeader')).getText()).toEqual('Adidas');
+    expect(element(by.id('productHeader')).getText()).toEqual('Suede Shoes');
   });
 });

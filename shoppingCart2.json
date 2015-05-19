@@ -1,7 +1,0 @@
-{
-  "id": 82,
-  "products": [
-  {"pid": 2, "name": "Sandals", "price": 78, "quantity": 1},
-  {"pid": 4, "name": "Athletic wear shoes", "price": 100, "quantity": 2},
-  ]
-}

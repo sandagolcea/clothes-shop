@@ -1,36 +1,105 @@
 [{
     "pid": 1,
-    "name": "Timberland boots",
-    "category": "women shoes",
+    "name": "Almond Toe Court Shoes",
+    "color": "Patent Black",
+    "category": "Women’s Footwear",
     "price": 99,
-    "quantity": 3
+    "quantity": 5
   },
   {
     "pid": 2,
-    "name": "Sandals",
-    "category": "women shoes",
-    "price": 78,
-    "quantity": 5
+    "name": "Suede Shoes",
+    "color": "Blue",
+    "category": "Women’s Footwear",
+    "price": 42,
+    "quantity": 4
   },
   {
     "pid": 3,
-    "name": "Tom tom shoes",
-    "category": "men shoes",
-    "price": 80,
-    "quantity": 2
+    "name": "Leather Driver Saddle Loafers",
+    "color": "Tan",
+    "category": "Men’s Footwear",
+    "price": 34,
+    "quantity": 12
   },
   { 
     "pid": 4,
-    "name": "Athletic wear shoes",
-    "category": "men shoes",
-    "price": 50,
-    "quantity": 5
+    "name": "Flip Flops",
+    "color": "Red",
+    "category": "Men’s Footwear",
+    "price": 19,
+    "quantity": 6
   },
   {
     "pid": 5,
-    "name": "Adidas",
-    "category": "men shoes",
-    "price": 24,
-    "quantity": 4
+    "name": "Flip Flops",
+    "color": "Blue",
+    "category": "Men’s Footwear",
+    "price": 19,
+    "quantity": 0
+  },
+  {
+    "pid": 6,
+    "name": "Gold Button Cardigan",
+    "color": "Black",
+    "category": "Women’s Casualwear",
+    "price": 167,
+    "quantity": 6
+  },
+  {
+    "pid": 7,
+    "name": "Cotton Shorts",
+    "color": "Medium Red",
+    "category": "Women’s Casualwear",
+    "price": 30,
+    "quantity": 5
+  },
+  {
+    "pid": 8,
+    "name": "Fine Stripe Short Sleeve Shirt",
+    "color": "Grey",
+    "category": "Men’s Casualwear",
+    "price": 49.99,
+    "quantity": 9
+  },
+  {
+    "pid": 9,
+    "name": "Fine Stripe Short Sleeve Shirt",
+    "color": "Green",
+    "category": "Men’s Casualwear",
+    "price": 39.99,
+    "quantity": 3
+  },
+  {
+    "pid": 10,
+    "name": "Sharkskin Waistcoat",
+    "color": "Charcoal",
+    "category": "Men’s Formalwear",
+    "price": 75,
+    "quantity": 2
+  },
+  {
+    "pid": 11,
+    "name": "Lightweight Patch Pocket Blazer",
+    "color": "Deer",
+    "category": "Men’s Formalwear",
+    "price": 175.50,
+    "quantity": 1
+  },
+  {
+    "pid": 12,
+    "name": "Bird Print Dress",
+    "color": "Black",
+    "category": "Women’s Formalwear",
+    "price": 270,
+    "quantity": 10
+  },
+  {
+    "pid": 13,
+    "name": "Mid Twist Cut-Out",
+    "color": "Pink",
+    "category": "Women’s Formalwear",
+    "price": 540,
+    "quantity": 5
   }
 ]

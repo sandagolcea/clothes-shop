@@ -79,5 +79,5 @@ function seedVouchers (vouchers) {
   });
 }
 
-createCategories(['men shoes','women shoes']);
+createCategories(["Women’s Footwear", "Men’s Footwear", "Women’s Casualwear", "Men’s Casualwear", "Men’s Formalwear", "Women’s Formalwear"]);
 
