@@ -20,7 +20,7 @@
         <a href="#/cart">
         <button type="button" class="btn btn-default navbar-btn btn-md navbar-right" ng-controller='MainController'>
           <span ng-class="{orange:(totalCartItems() > 0)}" class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
-            <span ng-show='totalCartItems() > 0'> {{totalCartItems()}}<br>{{totalCartPrice() | currency}}</span></span>
+            <span ng-show='totalCartItems() > 0'> {{totalCartItems()}}<br>{{totalCartPrice() | currency:"£"}}</span></span>
         </button>
         </a>
       </div>

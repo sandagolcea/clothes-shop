@@ -1,3 +1,5 @@
+<!-- Empty cart -->
+<div ng-show="items < 1">Your cart is currently empty..</div>
 <!-- Items in the shopping cart -->
 <ul class='products cart' ng-repeat='item in items'>
   <li class='product'>
@@ -7,13 +9,16 @@
     <button ng-click='removeFromCart(item)'>Remove from cart</button>
   </li>
 </ul>
+<!-- apply vouchers section -->
 <div ng-hide="items < 1">
-  <input type="text" ng-model="code">
-  <button ng-click='applyVoucher(code)'>Apply Voucher</button>
+  <input type="text" ng-model="voucherCode">
+  <button ng-click='applyVoucher(voucherCode)'>Apply Voucher</button>
+
+  <div id='voucherMessage' ng-show="voucherMessage">{{voucherMessage}}</div>
+  <!-- list of vouchers applied -->
+  <ul ng-repeat="voucher in vouchers">
+    <li>{{voucher.code}} - {{voucher.discount | currency}}</li>
+  </ul>
+  <!-- total -->
+  <div id='totalPrice'>Total: {{totalCartPrice() | currency:"£"}}</div>
 </div>
-<div ng-show="voucherMessage">{{voucherMessage}}</div>
-<div ng-show="items < 1">Your cart is currently empty..</div>
-<!-- vouchers -->
-<ul ng-repeat="voucher in vouchers">
-  <li>{{voucher.code}} - {{voucher.discount | currency}}</li>
-</ul>
