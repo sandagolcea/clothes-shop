@@ -27,9 +27,9 @@ mongoose.model('Product', productSchema);
 mongoose.model('Voucher', voucherSchema);
 
 // for local development:
-mongoose.connect('mongodb://localhost/test');
+// mongoose.connect('mongodb://localhost/test');
 // for heroku deployment
-// mongoose.connect('mongodb://heroku_app36855850:54kp66d48gdleqso48fcmssfsa@ds031802.mongolab.com:31802/heroku_app36855850');
+mongoose.connect('mongodb://heroku_app36855850:54kp66d48gdleqso48fcmssfsa@ds031802.mongolab.com:31802/heroku_app36855850');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
