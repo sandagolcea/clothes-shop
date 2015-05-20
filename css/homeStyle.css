@@ -1,9 +1,13 @@
-/* Main page elements */
+/******************************
+     Main page elements 
+******************************/
 .container {
   width: 80%;
 }
 
-/* List of products */
+/******************************
+       List of products
+******************************/
 .products {  
   list-style: none;
   width: 80%;
@@ -15,11 +19,9 @@
   background-color: #EEE;
 }
 
-/* Added styling and coloring */
-.orange {
-  color: orange;
-}
-
+/******************************
+        Individual Products
+******************************/
 .product {
   background-color: #efefef;
   border: 1px solid black;
@@ -38,11 +40,24 @@
   padding: 5px;
 }
 
+.outOfStock {
+  opacity: 0.5;
+}
+/******************************
+           Cart 
+******************************/
+.orange {
+  color: orange;
+}
+
 .cart li {
   display: inline-block;
   padding-right: 20px;
 }
-
-.outOfStock {
-  opacity: 0.5;
+/******************************
+          Images
+******************************/
+.front-icon {
+  height: 159px;
+  width: 145px;
 }

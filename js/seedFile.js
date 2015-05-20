@@ -29,13 +29,14 @@ function createCategories(categoryNames) {
   });
 }
 
-function seedProduct (categoryName, productName, productColor, productPrice, productQty) {
+function seedProduct (categoryName, productName, productColor, productImages, productPrice, productQty) {
   Category.findOne({ name: categoryName })
   .exec()
   .then(function (category) {
     Product.create({ 
       name: productName, 
       color: productColor,
+      images: productImages,
       category: category._id,
       price: productPrice,
       quantity: productQty
@@ -45,7 +46,7 @@ function seedProduct (categoryName, productName, productColor, productPrice, pro
 
 function seedAllProducts (products) {
   products.forEach( function (product) {
-    seedProduct(product.category, product.name, product.color, product.price, product.quantity);
+    seedProduct(product.category, product.name, product.color, product.images, product.price, product.quantity);
   });
 }
 

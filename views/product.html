@@ -6,4 +6,5 @@
       <p>category: {{product.category.name}}</p>
       <p>items in stock: {{product.quantity}}</p>
   </div>
+  <img class="big-icon" ng-src="{{product.images[0]}}"/><br>
   <div ng-show='productNotFound'>Product not found.</div>
