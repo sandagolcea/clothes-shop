@@ -1,8 +1,8 @@
 <!-- List of products available -->
 <ul class='products' ng-repeat="product in products">
-  <li>
-    <h3><a href="#/products/{{product._id}}">{{product.name}}</a></h3>
-    <em class='pull-right'>price: {{product.price | currency}}</em>
+  <li ng-class="{'outOfStock': product.quantity == 0}">
+    <h4><a href="#/products/{{product._id}}">{{product.name}} - {{product.color}}</a></h4>
+    <em id='productQuantity' class='pull-right'>price: {{product.price | currency}}</em>
     <p>quantity: {{product.quantity}}</p>
     <button ng-click='addToCart(product)'>Add to cart</button>
     <button ng-click='removeFromCart(product)'>Remove from cart</button>

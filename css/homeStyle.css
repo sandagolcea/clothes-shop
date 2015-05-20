@@ -42,3 +42,7 @@
   display: inline-block;
   padding-right: 20px;
 }
+
+.outOfStock {
+  opacity: 0.5;
+}

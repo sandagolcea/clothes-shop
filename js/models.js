@@ -8,6 +8,7 @@ var categorySchema = new Schema({
 
 var productSchema = new Schema({
   name: String,
+  color: String,
   category: { type: ObjectId, ref: 'Category', index: true },
   price: Number,
   quantity: Number
