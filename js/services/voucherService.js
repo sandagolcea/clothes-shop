@@ -44,7 +44,7 @@ app.service('voucherService', ['$http', '$q', function ($http, $q) {
   this._isValid = function (category, items) {
     if (category) {
       return items.some(function (item) {
-        return item.category.name === category;
+        return item.category === category.name;
       });
     }
     return true;

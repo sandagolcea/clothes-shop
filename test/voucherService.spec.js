@@ -6,7 +6,8 @@ describe('Voucher Service', function() {
       "discount": 5,
       "category": "",
       "minimumSpent": 0
-  }  
+  };
+  var ITEM_SHOES = { "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":"men shoes" };
   beforeEach(module('clothesShop'));
 
   var service, $httpBackend;
@@ -26,10 +27,10 @@ describe('Voucher Service', function() {
     voucher = {
       "code": "15OVER75SHOES",
       "discount": 10,
-      "category": "men shoes",
+      "category": {"name": "men shoes"},
       "minimumSpent": 0
     };
-    items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":{"name":"men shoes"} }];
+    items = [ITEM_SHOES];
     total = 50;
     expect(service._validateVoucher(voucher, items, total)).toBe(true);
   });
@@ -38,11 +39,11 @@ describe('Voucher Service', function() {
     voucher = {
       "code": "15OVER50SHOES",
       "discount": 10,
-      "category": "women shoes",
+      "category": {"name": "women shoes"},
       "minimumSpent": 50
     };
     total = 50;
-    items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":{"name":"men shoes"} }];
+    items = [ITEM_SHOES];
     expect(service._validateVoucher(voucher, items, total)).toBe(false);
   });
 
@@ -50,11 +51,11 @@ describe('Voucher Service', function() {
     voucher = {
       "code": "15OVER75SHOES",
       "discount": 10,
-      "category": "men shoes",
+      "category": {"name": "men shoes"},
       "minimumSpent": 75
     };
     total = 100;
-    items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 2, "category":{"name":"men shoes"} }];
+    items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 2, "category": "men shoes" }];
     expect(service._validateVoucher(voucher, items, total)).toBe(true);
   });
 
@@ -66,7 +67,7 @@ describe('Voucher Service', function() {
       "minimumSpent": 75
     };
     total = 50;
-    items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":{"name":"men shoes"} }];
+    items = [ITEM_SHOES];
     expect(service._validateVoucher(voucher, items, total)).toBe(false);
   });
 
@@ -75,7 +76,7 @@ describe('Voucher Service', function() {
       .expectGET('vouchers/'+CODE)
       .respond(data);
 
-    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 2, "category":{"name":"men shoes"} }];
+    var items = [ITEM_SHOES];
     var total = 100;
     service.addVoucherAsync(CODE, items, total);
     $httpBackend.flush();
@@ -101,7 +102,7 @@ describe('Voucher Service', function() {
       .expectGET('vouchers/'+CODE)
       .respond(data);
 
-    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 2, "category":{"name":"men shoes"} }];
+    var items = [ITEM_SHOES];
     var total = 100;
     var myPromise = service.addVoucherAsync(CODE, items, total);
     var resolvedValue;
@@ -126,7 +127,7 @@ describe('Voucher Service', function() {
         "minimumSpent": 75
       });
 
-    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":{"name":"men shoes"} }];
+    var items = [ITEM_SHOES];
     var total = 50;
     var resolvedValue;
 
@@ -149,7 +150,7 @@ describe('Voucher Service', function() {
       .expectGET('vouchers/'+CODE_NOT_FOUND)
       .respond(404,"Voucher not found.");
 
-    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 1, "category":{"name":"men shoes"} }];
+    var items = [ITEM_SHOES];
     var total = 50;
     var resolvedValue;
 
@@ -166,7 +167,7 @@ describe('Voucher Service', function() {
   }));
 
   it('should not let you add a duplicate voucher', function () {
-    var items = [{ "_id": "55414cd2f53656f71c119de0", "name": "Adidas", "price":50, "quantity": 2, "category":{"name":"men shoes"} }];
+    var items = [ITEM_SHOES];
     var total = 100;
     
     $httpBackend

@@ -53,7 +53,7 @@ app.service('cartService', ['voucherService', function (voucherService) {
   };
 
   this.applyVoucher = function (code) {
-    return voucherService.addVoucherAsync(code, items, this.totalPrice());
+    return voucherService.addVoucherAsync(code, this.items(), this.totalPrice());
   }
 
   
