@@ -37,14 +37,14 @@ describe('Shopping cart', function() {
   it('should display total price correctly', function () {
     helper.addItemToCart();
     helper.visitCart();
-    expect(element(by.id('totalPrice')).getText()).toBe('Total: £30.00');
+    expect(element(by.id('totalPrice')).getText()).toBe('Total: £270.00');
   });
 
   it('should be able to have a voucher applied to the total', function () {
     helper.addItemToCart();
     helper.visitCart();
     helper.applyVoucherWithCode(VOUCHER_CODE);
-    expect(element(by.id('totalPrice')).getText()).toBe('Total: £25.00');
+    expect(element(by.id('totalPrice')).getText()).toBe('Total: £265.00');
   });
 
   it('should confirm that a voucher has been applied', function () {

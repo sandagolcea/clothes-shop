@@ -3,14 +3,14 @@ app.service('cartService', ['voucherService', function (voucherService) {
   var items = {};
 
   this.addItem = function(_id, name, price, quantity, category) {
-    if ( !this._contains(_id) )
+    if ( !this.contains(_id) )
       items[_id] = {_id: _id, name: name, price: price, quantity: quantity, category: category};
     else
       items[_id].quantity += 1;
   };
 
   this.removeItem = function(_id) {
-    if ( this._contains(_id) ) {
+    if ( this.contains(_id) ) {
       items[_id].quantity > 1 ? items[_id].quantity-- : delete items[_id];
       return true;
     }
@@ -26,7 +26,7 @@ app.service('cartService', ['voucherService', function (voucherService) {
   };
 
   this.productQuantity = function(_id) {
-    if ( this._contains(_id) ) {
+    if ( this.contains(_id) ) {
       return items[_id].quantity;
     }
     return 0;
@@ -62,7 +62,7 @@ app.service('cartService', ['voucherService', function (voucherService) {
     return voucherService.vouchers();
   }
 
-  this._contains = function(_id) {
+  this.contains = function(_id) {
     return _id in items;
   };
 

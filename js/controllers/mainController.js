@@ -37,4 +37,8 @@ app.controller('MainController', ['$scope', 'cartService', '$http', function ($s
         $scope.voucherMessage = error; 
       });
   }
+
+  $scope.productInCart = function (product) {
+    return cart.contains(product._id) ? true : false
+  }
 }]);

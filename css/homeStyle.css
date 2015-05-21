@@ -2,8 +2,9 @@
      Main page elements 
 ******************************/
 body {
-  background-color: #DADDFD;
+  background-color: #D8DBFF;
 }
+
 .container {
   width: 80%;
 }
@@ -67,20 +68,30 @@ body {
 }
 
 .product-holder {
-  margin: 10px;
   background-color: #FFF; 
-  margin: 5px;
   font-family: savoyregular;
   text-align: center;
+  margin-top: 10px;
+  padding: 5px;
 }
 
-.product-info-holder {
-  font-size: 16px;
-  margin: 3px;
+.product-details {
+  font-family: "Helvetica Neue","Helvetica";
+  background-color: #FAFAFA;
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .product-box {
-  min-height: 360px;
+  min-height: 290px;
+}
+
+.button-box {
+  clear: both;
 }
 /******************************
            Cart 
@@ -92,6 +103,10 @@ body {
 .cart li {
   display: inline-block;
   padding-right: 20px;
+}
+
+.cart-product-image {
+
 }
 /******************************
           Images

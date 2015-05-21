@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Clothing!</title>
+  <link rel="icon" 
+      type="image/png" 
+      href="/images/favicon.png">
   <!-- jQuery & Bootstrap -->
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -19,7 +22,7 @@
         <a href="#/cart">
         <button type="button" class="btn btn-default navbar-btn btn-md navbar-right" ng-controller='MainController'>
           <span ng-class="{orange:(totalCartItems() > 0)}" class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
-            <span ng-show='totalCartItems() > 0'> {{totalCartItems()}}<br>{{totalCartPrice() | currency:"£"}}</span></span>
+          <span ng-cloak ng-show='totalCartItems() > 0'> {{totalCartItems()}}<br>{{totalCartPrice() | currency:"£"}}</span></span>
         </button>
         </a>
       </div>

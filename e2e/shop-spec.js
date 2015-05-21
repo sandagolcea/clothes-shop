@@ -13,8 +13,8 @@ describe('angularjs homepage shop', function() {
   it('should get to a product\'s information when clicking on it', function() {
     myElem = element.all(by.repeater('product in products'))
     .get(0)
-    .element(by.partialLinkText('Suede Shoes'))
+    .element(by.partialLinkText('Court Shoes'))
     .click();
-    expect(element(by.id('productHeader')).getText()).toEqual('Suede Shoes');
+    expect(element(by.id('productHeader')).getText()).toEqual('Almond Toe Court Shoes');
   });
 });
