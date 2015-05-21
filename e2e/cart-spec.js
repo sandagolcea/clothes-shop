@@ -21,13 +21,10 @@ describe('Shopping cart', function() {
     expect(cartList.count()).toEqual(1);
   });
 
-  it('should not add items Out of Stock', function() {
-    element(by.css('.outOfStock'))
-    .element(by.buttonText('Add to cart'))
-    .click();
-
-    helper.visitCart();
-    expect(cartList.count()).toEqual(0);
+  it('should not be able to add items Out of Stock', function() {
+    var button = element(by.css('.outOfStock'))
+    .element(by.buttonText('Add to cart'));
+    expect(button.isEnabled()).toBe(false);
   });
 
   it('should remove items from cart ',function () {

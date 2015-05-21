@@ -1,10 +1,26 @@
   <div ng-hide='productNotFound' class="product">
-      <div class="productHeader" id="productHeader">
-        {{product.name}}
+      <div class="row">
+        <div class="product-header" id="productHeader">
+          {{product.name}}
+        </div>
       </div>
-      <p>price: {{product.price | currency}}</p>
-      <p>category: {{product.category.name}}</p>
-      <p>items in stock: {{product.quantity}}</p>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="product-photo-box">
+            <img class="img-responsive" ng-src="{{product.images[0]}}"/><br>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="product-info-box">
+            <p class="product-name">{{product.name}}</p>
+            <p class="product-color">{{product.color}}</p>
+            <p class="product-price-holder">{{product.price | currency:"£"}}</p>
+            <p>Category: {{product.category.name}}</p>
+            <p>Quantity: {{product.quantity}}</p>
+            <!-- TODO: inject cart service into products controller -->
+            <button class="btn btn-block pull-left btn-xlg btn-warning ng-click-active" ng-click='addToCart(product)'>Add to Cart</button>
+          </div>
+        </div>
+      </div>
   </div>
-  <img class="big-icon" ng-src="{{product.images[0]}}"/><br>
   <div ng-show='productNotFound'>Product not found.</div>

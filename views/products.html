@@ -1,13 +1,18 @@
 <!-- List of products available -->
-
-<div ng-repeat="product in products">
-  <div class="product-sku" ng-class="{'outOfStock': product.quantity == 0}">
-    <h4><a href="#/products/{{product._id}}">{{product.name}}</a></h4>
-    <p>{{product.color}}</p>
-    <img class="front-icon" ng-src="{{product.images[0]}}"/><br>
-    <em id='productQuantity' class='pull-right'>price: {{product.price | currency}}</em>
-    <p>quantity: {{product.quantity}}</p>
-    <button ng-click='addToCart(product)'>Add to cart</button>
-    <button ng-click='removeFromCart(product)'>Remove from cart</button>
+<div class="row">
+  <div ng-repeat="product in products">
+    <div class="col-xs-12 col-sm-6 col-md-4 product-box" ng-class="{'outOfStock': product.quantity == 0}">
+      <div class="product-holder">
+        <h4><a href="#/products/{{product._id}}">{{product.name}}</a></h4>
+        <img class="front-icon" ng-src="{{product.images[0]}}"/><br>
+        <div class="product-info-holder">
+          <p>Color: {{product.color}}</p>
+          <p id='productQuantity'>price: {{product.price | currency}}</p>
+          <p>quantity: {{product.quantity}}</p>
+        </div>
+        <button class="btn btn-xlg btn-warning ng-click-active" ng-click='addToCart(product)' ng-disabled="product.quantity == 0">Add to cart</button>
+        <button class="btn btn-xlg btn-warning ng-click-active" ng-click='removeFromCart(product)' ng-disabled="product.quantity == 0">Remove from cart</button>
+      </div>
+    </div>
   </div>
 </div>

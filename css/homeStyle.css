@@ -2,7 +2,7 @@
      Main page elements 
 ******************************/
 body {
-  background-color: #EFEEED;
+  background-color: #DADDFD;
 }
 .container {
   width: 80%;
@@ -13,47 +13,74 @@ body {
 ******************************/
 .products {  
   list-style: none;
-  width: 90%;
 }
 
 .products li {
   border: 1px solid black;
   padding: 3px;
-  background-color: #EEE;
+  background-color: #FFF;
 }
 
 /******************************
-        Individual Products
+  Page view: Individual Products
 ******************************/
-.product {
-  background-color: #efefef;
-  border: 1px solid black;
-  height: 175px;
-  width: 225px;
-  margin-bottom: 20px;
+
+.product-header {
+  font-size: 30pt;
+  color: white;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.productHeader {
-  background-color: #006dcc;
-  font-size: 14pt;
-  color: white;
+.product-info-box {
+  float: left;
+  background-color: #FFF;
+  font-family: savoyregular;
   padding: 5px;
 }
 
-.outOfStock {
-  opacity: 0.5;
+.product-name {
+  font-size: 20px;
+  margin-top: 24px;
+  margin-bottom: 0px;
+}
+.product-color {
+  font-family: p22_undergroundlight!important;
 }
 
-.product-sku {
-  float: left;
-  width: 30%;
-  margin: 10px;
+.product-price-holder {
+  border-bottom: 1px solid #000;
+  text-align: left;
+  font-size: 35px;
+}
+
+.product-photo-box {
   text-align: center;
-  padding-right: 5px;
-  background-color: #FFF;
+}
+
+/***********************************
+  Front Page: Individual Products
+***********************************/
+
+
+.outOfStock {
+  opacity: 0.75;
+}
+
+.product-holder {
+  margin: 10px;
+  background-color: #FFF; 
+  margin: 5px;
+  font-family: savoyregular;
+  text-align: center;
+}
+
+.product-info-holder {
+  font-size: 16px;
+  margin: 3px;
+}
+
+.product-box {
+  min-height: 360px;
 }
 /******************************
            Cart 
