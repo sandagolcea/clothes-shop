@@ -79,6 +79,7 @@ body {
 
 .links:hover { 
     color: orange;
+    text-decoration: none;
 }
 
 .product-box {

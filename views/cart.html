@@ -5,13 +5,11 @@
   <table class="cart-table" ng-repeat='item in items'>
     <tr>
       <td>
-      <a href="/#/products/{{item._id}}">
-      {{item.name}}
-      </a>
+      <a class="links" href="/#/products/{{item._id}}">{{item.name}}</a>
       </td>
       <td class="cart-table-qty">{{item.quantity}}</td>
       <td>price: {{item.price | currency:"£"}}</td>
-      <td><button ng-click='removeFromCart(item)'>Remove from cart</button></td>
+      <td><button ng-click='removeFromCart(item)' class="btn btn-primary">Remove from cart</button></td>
     </tr>
   </table>
   <!-- list of vouchers applied -->
