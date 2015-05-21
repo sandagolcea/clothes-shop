@@ -9,17 +9,8 @@ body {
   width: 80%;
 }
 
-/******************************
-       List of products
-******************************/
-.products {  
-  list-style: none;
-}
-
-.products li {
-  border: 1px solid black;
-  padding: 3px;
-  background-color: #FFF;
+.orange {
+  color: orange;
 }
 
 /******************************
@@ -86,6 +77,10 @@ body {
   margin-bottom: 5px;
 }
 
+.links:hover { 
+    color: orange;
+}
+
 .product-box {
   min-height: 290px;
 }
@@ -96,17 +91,47 @@ body {
 /******************************
            Cart 
 ******************************/
-.orange {
-  color: orange;
+
+.cart-products-box {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  background-color: #FFF;
 }
 
-.cart li {
-  display: inline-block;
-  padding-right: 20px;
+.cart-table {
+  width: 100%;
+  border-bottom: 1px solid #EEE;
 }
 
-.cart-product-image {
+.cart-table tr td {
+  padding: 8px;
+  overflow: hidden;
+  width: 150px;
+}
 
+.cart-table-qty {
+  width: 100px;
+  text-align: center;
+}
+
+.voucher-table tr td {
+  width: 150px; 
+}
+
+.voucher-holder {
+  font-family: "Helvetica Neue","Helvetica";
+  background-color: #FAFAFA;
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+}
+
+.btn-group-vertical {
+  margin-top: 15px;
+}
+
+#totalPrice {
+  font-size: 20px;
+  border-top: 1px solid #EAEAEA;
 }
 /******************************
           Images
