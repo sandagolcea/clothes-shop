@@ -12,6 +12,8 @@ app.service('cartService', ['voucherService', function (voucherService) {
   this.removeItem = function(_id) {
     if ( this.contains(_id) ) {
       items[_id].quantity > 1 ? items[_id].quantity-- : delete items[_id];
+      // Checking that all the vouchers are valid after product removal
+      this.checkVouchers();
       return true;
     }
     return false;
@@ -56,9 +58,11 @@ app.service('cartService', ['voucherService', function (voucherService) {
     return voucherService.addVoucherAsync(code, this.items(), this.totalPrice());
   }
 
+  this.checkVouchers = function () {
+    return voucherService.removeInvalidVouchers(this.items(), this.totalPrice());
+  }
   
   this.vouchers = function () {
-    // console.log("** your vouchers **"+this.vouchers());
     return voucherService.vouchers();
   }
 

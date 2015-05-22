@@ -22,12 +22,34 @@ app.service('voucherService', ['$http', '$q', function ($http, $q) {
     return deferred.promise;
   };
 
-  this._validateVoucher = function (voucher, items, total) {
+  this.removeInvalidVouchers = function (items, total) {
+    var invalidVouchers = [];
+    this.vouchers().forEach( function(voucher) {
+      if ( !service._reValidateVoucher(voucher, items, total) ) {
+        invalidVouchers.push(voucher);
+      }
+    });
+    invalidVouchers.forEach ( function (voucher) {
+      for (var i = service.vouchers().length - 1; i >= 0; i--) {
+        if ( service.vouchers()[i].code == voucher.code ) {
+          service.vouchers().splice(i,1);
+          break;
+        }
+      };
+    });
+    
+  };
 
+  this._validateVoucher = function (voucher, items, total) {
     if (this._isDuplicated(voucher)) { return false; }
     if (!this._isValid(voucher.category, items)) { return false; }
     if (!this._hasMinimumSpent(voucher, total)) { return false; }
+    return true;
+  };
 
+  this._reValidateVoucher = function (voucher, items, total) {
+    if (!this._isValid(voucher.category, items)) { return false; }
+    if (!this._hasMinimumSpent(voucher, total)) { return false; }
     return true;
   };
 

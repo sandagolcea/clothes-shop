@@ -170,12 +170,49 @@ describe('Voucher Service', function() {
       .respond(VALID_VOUCHER);
     service.addVoucherAsync(CODE, items, total);
 
+    var items = [ITEM_TWO];
     $httpBackend
       .expectGET('vouchers/'+CODE)
       .respond(VALID_VOUCHER);
     service.addVoucherAsync(CODE, items, total);
 
     $httpBackend.flush();
+    expect(service.vouchers().length).toBe(1);
+  });
+
+  it('should let you remove an invalid voucher', function () {
+    voucher = MIN_SPENT_VOUCHER;
+    total = 150;
+    items = [ITEM_TWO];
+    
+    $httpBackend
+      .expectGET('vouchers/'+MIN_SPENT_VOUCHER.code)
+      .respond(MIN_SPENT_VOUCHER);
+    service.addVoucherAsync(MIN_SPENT_VOUCHER.code, items, total);
+    $httpBackend.flush();
+
+    total = 50;
+    items = [ITEM_TWO];
+    service.removeInvalidVouchers(items, total);
+
+    expect(service.vouchers().length).toBe(0);
+  });
+
+  it('should not let you remove an valid voucher', function () {
+    var voucher = MIN_SPENT_VOUCHER;
+    var total = 150;
+    var items = [ITEM_TWO];
+    
+    $httpBackend
+      .expectGET('vouchers/'+MIN_SPENT_VOUCHER.code)
+      .respond(MIN_SPENT_VOUCHER);
+    service.addVoucherAsync(MIN_SPENT_VOUCHER.code, items, total);
+    $httpBackend.flush();
+
+    total = 150;
+    items = [ITEM_TWO];
+    service.removeInvalidVouchers(items, total);
+
     expect(service.vouchers().length).toBe(1);
   });
 });
