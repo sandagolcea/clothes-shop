@@ -20,6 +20,8 @@ describe('Shopping Cart', function() {
       },
       setVouchers : function (vouchers) {
         voucherList = vouchers;
+      },
+      removeInvalidVouchers: function (items, totalPrice) {
       }
     };
    $provide.value('voucherService', mockVoucherService);
@@ -58,6 +60,7 @@ describe('Shopping Cart', function() {
   // tests for removing items
   it('can have items removed from it', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY, PROD_CATEGORY);
+    mockVoucherService.setVouchers([]);
     cart.removeItem(PROD_ID);
     expect(cart.items().length).toEqual(0);
   }); 
@@ -69,6 +72,7 @@ describe('Shopping Cart', function() {
   it('only removes specified amount of items', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY, PROD_CATEGORY);
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY, PROD_CATEGORY);
+    mockVoucherService.setVouchers([]);
     cart.removeItem(PROD_ID);
     expect(cart.items()[0].quantity).toEqual(1);
   });

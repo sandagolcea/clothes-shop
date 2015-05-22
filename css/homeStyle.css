@@ -137,3 +137,19 @@ body {
   height: 159px;
   width: 145px;
 }
+
+/*******************************
+    Bootstrap navbar change
+********************************/
+.navbar-inverse .navbar-text {
+  color: orange;
+}
+
+.navbar-inverse .navbar-text:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.navbar-inverse .navbar-brand {
+  color: orange;
+}
