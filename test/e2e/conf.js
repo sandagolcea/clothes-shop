@@ -1,4 +1,4 @@
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['shop-spec.js','cart-spec.js']
+  specs: ['product-spec.js','shop-spec.js','cart-spec.js']
 };

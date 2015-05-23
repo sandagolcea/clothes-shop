@@ -150,6 +150,12 @@ body {
   color: #FFF;
 }
 
+.navbar-text:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+
 .navbar-inverse .navbar-brand {
+  text-decoration: none;
   color: orange;
 }
