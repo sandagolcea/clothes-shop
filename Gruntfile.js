@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     },
     e2e: {
       options: {
-        configFile: "e2e/conf.js",
+        configFile: "test/e2e/conf.js",
         args: {}
       }
     },

@@ -12,7 +12,7 @@
     "mongodb": "mongod --dbpath data/db",
     "webdriver": "webdriver-manager start --standalone",
     "update-webdriver": "webdriver-manager update",
-    "protractor": "protractor e2e/conf.js"
+    "protractor": "protractor test/e2e/conf.js"
   },
   "repository": {
     "type": "git",
