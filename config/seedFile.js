@@ -1,4 +1,4 @@
-require('./models.js');
+require('../app/models/models.js');
 var async = require('async');
 var mongoose = require('mongoose');
 
@@ -6,10 +6,10 @@ var Product = mongoose.model('Product');
 var Category = mongoose.model('Category');
 var Voucher = mongoose.model('Voucher');
 
-var products = require('../products.json');
-var vouchers = require('../vouchers.json');
+var products = require('./products.json');
+var vouchers = require('./vouchers.json');
 
-// 30 days later
+// expiry of voucher set to 30 days after adding it to the DB
 var futureDate = new Date();
 futureDate.setDate(futureDate.getDate() + 30);
 var expiredDate = new Date();

@@ -17,7 +17,7 @@ module.exports = function(grunt) {
   },
   watch: {
     protractor: {
-      files: ['js/**/*.js', 'e2e/*.js'],
+      files: ['public/**/*.js', 'e2e/*.js'],
       tasks: ['protractor:e2e']
     }
   }

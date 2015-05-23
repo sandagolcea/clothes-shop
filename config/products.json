@@ -3,8 +3,8 @@
     "name": "Almond Toe Court Shoes",
     "color": "Patent Black",
     "images": [
-      "images/AlmondToeCourtShoes.jpg",
-      "images/AlmondToeCourtShoes_thumb.jpg"
+      "public/images/AlmondToeCourtShoes.jpg",
+      "public/images/AlmondToeCourtShoes_thumb.jpg"
     ],
     "category": "Women’s Footwear",
     "price": 99,
@@ -15,8 +15,8 @@
     "name": "Suede Shoes",
     "color": "Blue",
     "images": [
-      "images/SuedeShoes.jpg",
-      "images/SuedeShoes_thumb.jpg"
+      "public/images/SuedeShoes.jpg",
+      "public/images/SuedeShoes_thumb.jpg"
     ],
     "category": "Women’s Footwear",
     "price": 42,
@@ -27,8 +27,8 @@
     "name": "Leather Driver Saddle Loafers",
     "color": "Tan",
     "images": [
-      "images/LeatherDriverSaddleLoafers.jpg",
-      "images/LeatherDriverSaddleLoafers_thumb.jpg"
+      "public/images/LeatherDriverSaddleLoafers.jpg",
+      "public/images/LeatherDriverSaddleLoafers_thumb.jpg"
     ],
     "category": "Men’s Footwear",
     "price": 34,
@@ -39,8 +39,8 @@
     "name": "Flip Flops",
     "color": "Red",
     "images": [
-      "images/FlipFlopsRed.jpg",
-      "images/FlipFlopsRed_thumb.jpg"
+      "public/images/FlipFlopsRed.jpg",
+      "public/images/FlipFlopsRed_thumb.jpg"
     ],
     "category": "Men’s Footwear",
     "price": 19,
@@ -51,8 +51,8 @@
     "name": "Flip Flops",
     "color": "Blue",
     "images": [
-      "images/FlipFlopsBlue.jpg",
-      "images/FlipFlopsBlue_thumb.jpg"
+      "public/images/FlipFlopsBlue.jpg",
+      "public/images/FlipFlopsBlue_thumb.jpg"
     ],
     "category": "Men’s Footwear",
     "price": 19,
@@ -63,8 +63,8 @@
     "name": "Gold Button Cardigan",
     "color": "Black",
     "images": [
-      "images/GoldButtonCardigan.jpg",
-      "images/GoldButtonCardigan_thumb.jpg"
+      "public/images/GoldButtonCardigan.jpg",
+      "public/images/GoldButtonCardigan_thumb.jpg"
     ],
     "category": "Women’s Casualwear",
     "price": 167,
@@ -75,8 +75,8 @@
     "name": "Cotton Shorts",
     "color": "Medium Red",
     "images": [
-      "images/CottonShorts.jpg",
-      "images/CottonShorts_thumb.jpg"
+      "public/images/CottonShorts.jpg",
+      "public/images/CottonShorts_thumb.jpg"
     ],
     "category": "Women’s Casualwear",
     "price": 30,
@@ -87,8 +87,8 @@
     "name": "Fine Stripe Short Sleeve Shirt",
     "color": "Grey",
     "images": [
-      "images/FineStripeShortSleeveShirt.jpg",
-      "images/FineStripeShortSleeveShirt_thumb.jpg"
+      "public/images/FineStripeShortSleeveShirt.jpg",
+      "public/images/FineStripeShortSleeveShirt_thumb.jpg"
     ],
     "category": "Men’s Casualwear",
     "price": 49.99,
@@ -99,8 +99,8 @@
     "name": "Fine Stripe Short Sleeve Shirt",
     "color": "Green",
     "images": [
-      "images/ShortSleeveGreen.jpg",
-      "images/ShortSleeveGreen_thumb.jpg"
+      "public/images/ShortSleeveGreen.jpg",
+      "public/images/ShortSleeveGreen_thumb.jpg"
     ],
     "category": "Men’s Casualwear",
     "price": 39.99,
@@ -111,8 +111,8 @@
     "name": "Sharkskin Waistcoat",
     "color": "Charcoal",
     "images": [
-      "images/SharkskinWaistcoat.jpg",
-      "images/SharkskinWaistcoat_thumb.jpg"
+      "public/images/SharkskinWaistcoat.jpg",
+      "public/images/SharkskinWaistcoat_thumb.jpg"
     ],
     "category": "Men’s Formalwear",
     "price": 75,
@@ -123,8 +123,8 @@
     "name": "Lightweight Patch Pocket Blazer",
     "color": "Deer",
     "images": [
-      "images/LightweightPocketBlazer.jpg",
-      "images/LightweightPocketBlazer_thumb.jpg"
+      "public/images/LightweightPocketBlazer.jpg",
+      "public/images/LightweightPocketBlazer_thumb.jpg"
     ],
     "category": "Men’s Formalwear",
     "price": 175.50,
@@ -135,8 +135,8 @@
     "name": "Bird Print Dress",
     "color": "Black",
     "images": [
-      "images/BirdPrintDress.jpg",
-      "images/BirdPrintDress_thumb.jpg"
+      "public/images/BirdPrintDress.jpg",
+      "public/images/BirdPrintDress_thumb.jpg"
     ],
     "category": "Women’s Formalwear",
     "price": 270,
@@ -147,8 +147,8 @@
     "name": "Mid Twist Cut-Out",
     "color": "Pink",
     "images": [
-      "images/MidTwistCutDress.jpg",
-      "images/MidTwistCutDress_thumb.jpg"
+      "public/images/MidTwistCutDress.jpg",
+      "public/images/MidTwistCutDress_thumb.jpg"
     ],
     "category": "Women’s Formalwear",
     "price": 540,

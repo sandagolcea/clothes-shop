@@ -6,7 +6,8 @@
   "scripts": {
     "prestart": "mongod --dbpath data/db & osascript -e 'tell application \"Terminal\" to activate' -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down'",    
     "preprotractor": "webdriver-manager start --standalone & osascript -e 'tell application \"Terminal\" to activate' -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down'",
-    "seed": "node js/seedFile.js",
+    "seed": "node config/seedFile.js",
+    "flush": "node config/flushDB.js",
     "test": "karma start test/karma.conf.js",    
     "mongodb": "mongod --dbpath data/db",
     "webdriver": "webdriver-manager start --standalone",

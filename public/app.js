@@ -4,22 +4,22 @@ app.config(function ($routeProvider) {
   $routeProvider
     .when('/', 
     {
-      templateUrl: '/views/products.html',
+      templateUrl: '/public/views/products.html',
       controller: 'MainController'
     })
     .when('/cart', 
     {
-      templateUrl: '/views/cart.html',
+      templateUrl: '/public/views/cart.html',
       controller: 'MainController'
     })
     .when('/products/:productId',
     {
-      templateUrl: '/views/product.html',
+      templateUrl: '/public/views/product.html',
       controller: 'ProductController'
     })
     .when('/categories', 
     {
-      templateUrl: '/views/categories.html',
+      templateUrl: '/public/views/categories.html',
       controller: 'MainController'
     })
     .otherwise({ redirectTo: '/'});

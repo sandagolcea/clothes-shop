@@ -1,4 +1,4 @@
-require('./js/models.js');
+require('../app/models/models.js');
 var async = require('async');
 var mongoose = require('mongoose');
 

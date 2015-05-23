@@ -20,15 +20,16 @@ module.exports = function(config) {
       'bower_components/angular-filter/dist/angular-filter.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'js/**/*.js',
+      'public/**/*.js',
       'test/**/*.spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      'js/models.js',
-      'js/seedFile.js'
+      'app/models/models.js',
+      'config/seedFile.js',
+      'config/flushDB.js'
     ],
 
 

@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 
-require('./js/models.js');
+require('./app/models/models.js');
 
 var Product = mongoose.model('Product');
 var Category = mongoose.model('Category');
