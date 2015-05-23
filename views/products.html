@@ -1,6 +1,6 @@
 <!-- List of products available -->
 <div class="row">
-  <div ng-repeat="product in products | orderBy: 'name'">
+  <div ng-repeat="product in products | orderBy: 'name' | filter: searchTerm">
     <div class="col-xs-12 col-sm-6 col-md-4 product-box" ng-class="{'outOfStock': product.quantity == 0}">
       <div class="product-holder">
         <a href="#/products/{{product._id}}">
