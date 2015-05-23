@@ -8,14 +8,14 @@ app.controller('MainController', ['$scope', 'cartService', '$http', function ($s
   });
 
   $scope.addToCart = function (product) {
-    if ( product.quantity > cart.productQuantity(product._id) ) {
+    if (product.quantity > cart.itemQuantity(product._id)) {
       cart.addItem(product._id, product.name, product.price, 1, product.category.name);
       $scope.items = cart.items();
     }
   };
 
   $scope.removeFromCart = function (product) {
-    cart.removeItem(product._id)
+    cart.removeItem(product._id);
     $scope.items = cart.items();
   };
 
@@ -36,9 +36,9 @@ app.controller('MainController', ['$scope', 'cartService', '$http', function ($s
       function (error) {
         $scope.voucherMessage = error; 
       });
-  }
+  };
 
   $scope.productInCart = function (product) {
-    return cart.contains(product._id) ? true : false
-  }
+    return cart.containsItem(product._id);
+  };
 }]);

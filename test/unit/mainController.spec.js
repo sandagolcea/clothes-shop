@@ -24,7 +24,7 @@ describe('MainController', function() {
         totalPrice: function () {
           return TOTAL_PRICE;
         },
-        productQuantity: function () {
+        itemQuantity: function () {
           return 0;
         },
         setItems: function (itemsArray) {
@@ -87,7 +87,7 @@ describe('MainController', function() {
     product = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":5, "category": {"name": "women shoes"}};
     mockCartService.setItems([product]);
     spyOn(mockCartService,'addItem');
-    scope.addToCart(product)
+    scope.addToCart(product);
     expect(mockCartService.addItem).toHaveBeenCalled();
     expect(scope.items).toEqual([product]);
   });
@@ -95,7 +95,7 @@ describe('MainController', function() {
   it('only adds items if enough items in stock', function () {
     product_unavailable = {"_id": "55414cd2f53656f71c119de2","name": "Sandals","price":78,"quantity":0, "category": {"name": "women shoes"}};
     spyOn(mockCartService,'addItem');
-    scope.addToCart(product_unavailable)
+    scope.addToCart(product_unavailable);
     expect(mockCartService.addItem).not.toHaveBeenCalled();
     expect(scope.items).toEqual(cartItems);
   });

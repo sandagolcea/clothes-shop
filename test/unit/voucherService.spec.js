@@ -170,7 +170,7 @@ describe('Voucher Service', function() {
       .respond(VALID_VOUCHER);
     service.addVoucherAsync(CODE, items, total);
 
-    var items = [ITEM_TWO];
+    items = [ITEM_TWO];
     $httpBackend
       .expectGET('vouchers/'+CODE)
       .respond(VALID_VOUCHER);

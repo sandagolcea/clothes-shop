@@ -27,6 +27,7 @@ mongoose.model('Category', categorySchema);
 mongoose.model('Product', productSchema);
 mongoose.model('Voucher', voucherSchema);
 
+// TODO #2: dynamically change path to db
 // for local development:
 mongoose.connect('mongodb://localhost/test');
 // for heroku deployment

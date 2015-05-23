@@ -4,7 +4,7 @@ describe('Shopping cart', function() {
   var prodList = [];
   var cartList = element.all(by.repeater('item in items'));
   var VOUCHER_CODE = 'SHOP5OFF';
-  var EXPIRED_VOUCHER_CODE = 'EXPIRED'
+  var EXPIRED_VOUCHER_CODE = 'EXPIRED';
 
   beforeEach(function(){
     browser.get('http://localhost:3000');

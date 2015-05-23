@@ -95,12 +95,12 @@ describe('Shopping Cart', function() {
 
   // tests for individual product quantity
   it('has qty 0 for a product that is not in cart', function () {
-    expect(cart.productQuantity(PROD_ID)).toBe(0);
+    expect(cart.itemQuantity(PROD_ID)).toBe(0);
   });
 
   it('knows total for each item in cart - product in cart', function () {
     cart.addItem(PROD_ID, PROD_NAME, PROD_PRICE, PROD_QTY, PROD_CATEGORY);
-    expect(cart.productQuantity(PROD_ID)).toBe(1);
+    expect(cart.itemQuantity(PROD_ID)).toBe(1);
   });
   
   // tests for total price
