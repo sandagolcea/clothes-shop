@@ -48,6 +48,7 @@ class MasterViewController: UITableViewController {
                 dispatch_async(dispatch_get_main_queue(), {
                     let originalCell = tableView.cellForRowAtIndexPath(indexPath)
                     originalCell?.imageView?.image = image
+                    self.tableView.reloadData()
                 })
             }
         } )
