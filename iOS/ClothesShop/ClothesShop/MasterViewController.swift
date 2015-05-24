@@ -10,20 +10,11 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var products = ["Dress","Shoes","Shirt","Blouse"]
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    var products = [
+        Product(id: 2, name: "Suede Shoes", color: "Blue", category: "Women's Footwear", price: 75, quantity: 2, images: ["public/images/SuedeShoes.jpg", "public/images/SuedeShoes_thumb.jpg"]),
+        Product(id: 7, name: "Cotton Shorts", color: "Red", category: "Women's Casualwear", price: 30, quantity: 5, images: ["public/images/CottonShorts.jpg", "public/images/CottonShorts_thumb.jpg"]),
+        Product(id: 8, name: "Fine Stripe Short Sleeve Shirt", color: "Grey", category: "Men's Casualwear", price: 49.99, quantity: 9, images: ["public/images/FineStripeShortSleeveShirt.jpg", "public/images/FineStripeShortSleeveShirt_thumb.jpg"])
+    ]
 
     // MARK: - Segues
 
@@ -48,7 +39,8 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel!.text = self.products[indexPath.item]
+        cell.textLabel!.text = self.products[indexPath.item].name
+        cell.detailTextLabel!.text = self.products[indexPath.item].price.description
         return cell
     }
 
