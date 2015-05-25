@@ -14,51 +14,54 @@ class ShoppingCart {
     init() {
         self.items = [String : Item]()
     }
-    
+
     func addItem(product : Product) {
         if let item = self.items[product.id] {
-            item.quantity++
-            println("\(item.quantity) items: \(item.product.name) in cart. ")
+            // checks that there still are products in stock before adding
+            if (item.quantity < item.product.quantity) {
+                item.quantity++
+                println("\(item.quantity) items: \(item.product.name) in cart. ")
+            }
         } else {
             var item = Item(product: product)
             self.items[product.id] = item
             println("Adding item \(item.product.name) to cart. ")
         }
     }
+    
+    func removeItem(product : Product) {
+        if let item = self.items[product.id] {
+            if item.quantity > 1 {
+                item.quantity--
+            } else {
+                self.items[product.id] = nil
+            }
+        } else {
+            self.items[product.id] = nil
+        }
+    }
+    
+    func totalItems() -> Int {
+        var totalItems : Int = 0
+        for (id, item) in self.items {
+            totalItems += item.quantity
+        }
+        return totalItems
+    }
+
+    func totalPrice() -> Float {
+        var total : Float = 0
+        for (id, item) in self.items {
+            total += Float(item.quantity) * item.product.price
+        }
+        return total
+    }
 }
-//app.service('cartService', ['voucherService', function (voucherService) {
-//    // TODO #3: store items in local storage for persistence;
-//    var items = {};
-//    
-//    this.addItem = function(id, name, price, quantity, category) {
-//        if (!this.containsItem(id))
-//        items[id] = {_id: id, name: name, price: price, quantity: quantity, category: category};
-//        else
-//        items[id].quantity += 1;
-//    };
-//    
-//    this.removeItem = function(id) {
-//        if (this.containsItem(id)) {
-//            items[id].quantity > 1 ? items[id].quantity-- : delete items[id];
-//
-//            voucherService.removeInvalidVouchers(this.items(), this.totalPrice());
-//            return true;
-//        }
-//        return false;
-//    };
-//    
+
 //    this.containsItem = function(id) {
 //        return id in items;
 //    };
-//    
-//    this.totalItems = function() {
-//        var total = 0;
-//        for (var index in items) {
-//            total += items[index].quantity;
-//        }
-//        return total;
-//    };
-//    
+//
 //    this.itemQuantity = function(id) {
 //        if (this.containsItem(id)) {
 //            return items[id].quantity;
@@ -66,31 +69,3 @@ class ShoppingCart {
 //        return 0;
 //    };
 //    
-//    this.items = function () {
-//        // convert hash of items to an array for displaying purposes
-//        var itemsArray = [];
-//        for (var index in items) {
-//            itemsArray.push(items[index]);
-//        }
-//        return itemsArray;
-//    };
-//    
-//    this.totalPrice = function () {
-//        var total = 0;
-//        for ( var index in items) {
-//            total += items[index].quantity * items[index].price;
-//        }
-//        // apply voucher discounts
-//        this.vouchers().forEach(function(voucher) {
-//            total -= voucher.discount;
-//            });
-//        return total;
-//    };
-//    
-//    this.applyVoucher = function (code) {
-//        return voucherService.addVoucherAsync(code, this.items(), this.totalPrice());
-//    };
-//    
-//    this.vouchers = function () {
-//        return voucherService.vouchers();
-//    };
