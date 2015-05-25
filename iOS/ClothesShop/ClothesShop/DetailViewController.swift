@@ -11,7 +11,12 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var image: UIImageView!
 
+    @IBAction func addToCart(sender: AnyObject) {
+    }
 
     var detailItem: AnyObject? {
         didSet {
@@ -22,9 +27,25 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
+        if let product = self.detailItem as? Product {
+            if let name = self.nameLabel {
+                name.text = product.name
+            }
+            
+            if let price = self.priceLabel {
+                price.text = product.price.description
+            }
+            
+
+            if let image = self.image {
+                ImageAsyncLoader(url: product.imageURLs[1], { data in
+                    if data? != nil {
+                        var loadedImage = UIImage(data: data!)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.image.image = loadedImage
+                        })
+                    }
+                })
             }
         }
     }
@@ -39,7 +60,5 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
