@@ -13,7 +13,6 @@ class DetailViewController: UIViewController {
     var product : Product?
     var shoppingCart : ShoppingCart?
     
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -55,6 +54,14 @@ class DetailViewController: UIViewController {
         }
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showShoppingCart" {
+                var detailViewController = (segue.destinationViewController as ShoppingCartViewController)
+            
+                detailViewController.shoppingCart = self.shoppingCart
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

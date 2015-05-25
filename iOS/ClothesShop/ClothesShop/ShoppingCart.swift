@@ -56,6 +56,10 @@ class ShoppingCart {
         }
         return total
     }
+    
+    func getItems() -> [Item] {
+        return self.items.values.array
+    }
 }
 
 //    this.containsItem = function(id) {
