@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F212D7021B13E0C900BE4933 /* ProductLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F212D7011B13E0C900BE4933 /* ProductLoader.swift */; };
 		F21903821B1382D600383216 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21903811B1382D600383216 /* Item.swift */; };
 		F21903881B13A42400383216 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21903871B13A42400383216 /* ShoppingCartViewController.swift */; };
 		F258BB1E1B1260370033E590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258BB1D1B1260370033E590 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F212D7011B13E0C900BE4933 /* ProductLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductLoader.swift; sourceTree = "<group>"; };
 		F21903811B1382D600383216 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F21903871B13A42400383216 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		F258BB181B1260370033E590 /* ClothesShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClothesShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 				F28984341B13732C003075FD /* ShoppingCart.swift */,
 				F21903811B1382D600383216 /* Item.swift */,
 				F21903871B13A42400383216 /* ShoppingCartViewController.swift */,
+				F212D7011B13E0C900BE4933 /* ProductLoader.swift */,
 			);
 			path = ClothesShop;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				F258BB401B1267E60033E590 /* Product.swift in Sources */,
 				F258BB201B1260370033E590 /* MasterViewController.swift in Sources */,
 				F21903821B1382D600383216 /* Item.swift in Sources */,
+				F212D7021B13E0C900BE4933 /* ProductLoader.swift in Sources */,
 				F258BB1E1B1260370033E590 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,13 +27,3 @@ class Product {
         self.imageURLs = images
     }
 }
-
-//{"_id":"5560e4e801b11ff513e2a755",
-//    "name":"Suede Shoes",
-//    "color":"Blue",
-//    "category":{"name":"Women’s Footwear"},
-//    "price":42,"quantity":4,
-//    "__v":0,
-//    "images":["public/images/SuedeShoes.jpg",
-//    "public/images/SuedeShoes_thumb.jpg"]
-//}

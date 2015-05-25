@@ -11,12 +11,7 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var shoppingCart = ShoppingCart()
-    
-    var products = [
-        Product(id: "2", name: "Suede Shoes", color: "Blue", category: "Women's Footwear", price: 75, quantity: 2, images: ["http://localhost:3000/public/images/SuedeShoes.jpg", "http://localhost:3000/public/images/SuedeShoes_thumb.jpg"]),
-        Product(id: "7", name: "Cotton Shorts", color: "Red", category: "Women's Casualwear", price: 30, quantity: 5, images: ["http://localhost:3000/public/images/CottonShorts.jpg", "http://localhost:3000/public/images/CottonShorts_thumb.jpg"]),
-        Product(id: "8", name: "Fine Stripe Short Sleeve Shirt", color: "Grey", category: "Men's Casualwear", price: 49.99, quantity: 9, images: ["http://localhost:3000/public/images/FineStripeShortSleeveShirt.jpg", "http://localhost:3000/public/images/FineStripeShortSleeveShirt_thumb.jpg"])
-    ]
+    var products = ProductLoader.getProducts()
 
     // MARK: - Segues
 

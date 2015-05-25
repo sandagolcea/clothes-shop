@@ -31,6 +31,7 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let product = self.detailItem as? Product {
+            self.title = product.name
             self.product = product
             if let name = self.nameLabel {
                 name.text = product.name
