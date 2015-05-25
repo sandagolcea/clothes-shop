@@ -9,18 +9,20 @@
 import Foundation
 
 class ShoppingCart {
-    var items : [Product]
+    var items : [String : Item]
     
     init() {
-        self.items = []
+        self.items = [String : Item]()
     }
     
-    func addItem(item : Product) {
-        if (items as NSArray).containsObject(item) {
-            println("Item already in cart. ")
+    func addItem(product : Product) {
+        if let item = self.items[product.id] {
+            item.quantity++
+            println("\(item.quantity) items: \(item.product.name) in cart. ")
         } else {
-            self.items.append(item)
-            println("Adding item to cart. ")
+            var item = Item(product: product)
+            self.items[product.id] = item
+            println("Adding item \(item.product.name) to cart. ")
         }
     }
 }

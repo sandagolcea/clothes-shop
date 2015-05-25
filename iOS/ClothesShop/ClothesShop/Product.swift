@@ -9,7 +9,7 @@
 import Foundation
 
 class Product {
-    var id : Int
+    var id : String
     var name : String
     var color : String
     var category : String
@@ -17,7 +17,7 @@ class Product {
     var quantity : Int
     var imageURLs : [String]
     
-    init(id : Int, name : String, color : String, category : String, price : Float, quantity : Int, images : [String]) {
+    init(id : String, name : String, color : String, category : String, price : Float, quantity : Int, images : [String]) {
         self.id = id
         self.name = name
         self.color = color
