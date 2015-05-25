@@ -10,6 +10,8 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
+    var shoppingCart = ShoppingCart()
+    
     var products = [
         Product(id: 2, name: "Suede Shoes", color: "Blue", category: "Women's Footwear", price: 75, quantity: 2, images: ["http://localhost:3000/public/images/SuedeShoes.jpg", "http://localhost:3000/public/images/SuedeShoes_thumb.jpg"]),
         Product(id: 7, name: "Cotton Shorts", color: "Red", category: "Women's Casualwear", price: 30, quantity: 5, images: ["http://localhost:3000/public/images/CottonShorts.jpg", "http://localhost:3000/public/images/CottonShorts_thumb.jpg"]),
@@ -21,14 +23,17 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = self.products[indexPath.row]
-            (segue.destinationViewController as DetailViewController).detailItem = object
+                let product = self.products[indexPath.row]
+                var detailViewController = (segue.destinationViewController as DetailViewController)
+                
+                detailViewController.detailItem = product
+                detailViewController.shoppingCart = self.shoppingCart
             }
         }
     }
 
     // MARK: - Table View
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -39,16 +44,20 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel!.text = self.products[indexPath.item].name
-        cell.detailTextLabel!.text = self.products[indexPath.item].price.description
+        cell.textLabel?.text = self.products[indexPath.row].name
+        cell.detailTextLabel?.text = self.products[indexPath.row].price.description
         
-        ImageAsyncLoader(url: self.products[indexPath.item].imageURLs[1], { data in
+        ImageAsyncLoader(url: self.products[indexPath.row].imageURLs[1], { data in
             if data? != nil {
                 var image = UIImage(data: data!)
+                // cannot access ui
                 dispatch_async(dispatch_get_main_queue(), {
-                    let originalCell = tableView.cellForRowAtIndexPath(indexPath)
-                    originalCell?.imageView?.image = image
-                    self.tableView.reloadData()
+                    // exec in UIThread
+                    if let originalCell = tableView.cellForRowAtIndexPath(indexPath)
+                    {
+                        originalCell.imageView?.image = image
+                        self.tableView.reloadData()
+                    }
                 })
             }
         })
@@ -80,6 +89,5 @@ class ImageAsyncLoader {
                     self.callback(nil)
                 }
         })
-        //callback(nil)
     }
 }

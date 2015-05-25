@@ -15,6 +15,7 @@
 		F258BB2A1B1260370033E590 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F258BB281B1260370033E590 /* LaunchScreen.xib */; };
 		F258BB361B1260370033E590 /* ClothesShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258BB351B1260370033E590 /* ClothesShopTests.swift */; };
 		F258BB401B1267E60033E590 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258BB3F1B1267E60033E590 /* Product.swift */; };
+		F28984351B13732C003075FD /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28984341B13732C003075FD /* ShoppingCart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		F258BB341B1260370033E590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F258BB351B1260370033E590 /* ClothesShopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesShopTests.swift; sourceTree = "<group>"; };
 		F258BB3F1B1267E60033E590 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		F28984341B13732C003075FD /* ShoppingCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				F258BB281B1260370033E590 /* LaunchScreen.xib */,
 				F258BB1B1B1260370033E590 /* Supporting Files */,
 				F258BB3F1B1267E60033E590 /* Product.swift */,
+				F28984341B13732C003075FD /* ShoppingCart.swift */,
 			);
 			path = ClothesShop;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F28984351B13732C003075FD /* ShoppingCart.swift in Sources */,
 				F258BB221B1260370033E590 /* DetailViewController.swift in Sources */,
 				F258BB401B1267E60033E590 /* Product.swift in Sources */,
 				F258BB201B1260370033E590 /* MasterViewController.swift in Sources */,

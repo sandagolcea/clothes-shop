@@ -10,12 +10,16 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var product : Product?
+    var shoppingCart : ShoppingCart?
+    
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var image: UIImageView!
 
     @IBAction func addToCart(sender: AnyObject) {
+        shoppingCart!.addItem(product!)
     }
 
     var detailItem: AnyObject? {
@@ -28,6 +32,7 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let product = self.detailItem as? Product {
+            self.product = product
             if let name = self.nameLabel {
                 name.text = product.name
             }
