@@ -20,12 +20,10 @@ class ShoppingCart {
             // checks that there still are products in stock before adding
             if (item.quantity < item.product.quantity) {
                 item.quantity++
-                println("\(item.quantity) items: \(item.product.name) in cart. ")
             }
         } else {
             var item = Item(product: product)
             self.items[product.id] = item
-            println("Adding item \(item.product.name) to cart. ")
         }
     }
     
@@ -61,15 +59,3 @@ class ShoppingCart {
         return self.items.values.array
     }
 }
-
-//    this.containsItem = function(id) {
-//        return id in items;
-//    };
-//
-//    this.itemQuantity = function(id) {
-//        if (this.containsItem(id)) {
-//            return items[id].quantity;
-//        }
-//        return 0;
-//    };
-//    

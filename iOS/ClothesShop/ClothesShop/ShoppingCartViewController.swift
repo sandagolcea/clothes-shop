@@ -26,20 +26,7 @@ class ShoppingCartViewController: UITableViewController
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        
-//        if (indexPath.section == 1) // price section
-//        {
-//            if (self.shoppingCart!.totalItems() > 0) {
-//                cell.textLabel?.text = self.shoppingCart!.totalPrice().description
-//            }
-//            else {
-//                cell.textLabel?.text = "Shopping cart is empty.."
-//            }
-//        }
-//        else if (self.shoppingCart?.getItems().count > 0) {
-//            cell.textLabel?.text = self.shoppingCart!.getItems()[indexPath.row].product.name;
-//        }
-//        
+
         if (indexPath.section == 0) {
             cell.textLabel?.text = self.shoppingCart!.getItems()[indexPath.row].product.name;
             cell.detailTextLabel?.text = self.shoppingCart!.getItems()[indexPath.row].quantity.description;
@@ -56,8 +43,6 @@ class ShoppingCartViewController: UITableViewController
                 cell.detailTextLabel?.text = " "
             }
         }
-        
-        
         return cell
     }
 }
