@@ -20,7 +20,7 @@ goto localhost:3000
 
 ###End to End tests
 - `npm run mongo`  
-- `npm start`
+- `npm start`  
 - `npm run protractor` - starting both the webdriver and protractor  
 
 #####for continuous run:
