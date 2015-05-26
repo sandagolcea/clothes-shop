@@ -7,7 +7,10 @@ BackEnd: NODE.js with Express, using a MongoDB for products
 
 ##to run
 `git clone git@github.com:sandagolcea/clothes-shop.git`   
+`bower install`  
+`npm install`
 `cd clothes-shop`  
+`npm run mongo`  
 `npm start`  
 goto localhost:3000  
 
@@ -16,7 +19,8 @@ goto localhost:3000
 `npm test`  
 
 ###End to End tests
-- `npm start` - this starts both the db and the node server
+- `npm run mongo`  
+- `npm start`
 - `npm run protractor` - starting both the webdriver and protractor  
 
 #####for continuous run:
