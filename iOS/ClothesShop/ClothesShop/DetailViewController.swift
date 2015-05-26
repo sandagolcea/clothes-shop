@@ -20,6 +20,9 @@ class DetailViewController: UIViewController {
     @IBAction func addToCart(sender: AnyObject) {
         shoppingCart!.addItem(product!)
     }
+    @IBAction func removeFromCart(sender: AnyObject) {
+        shoppingCart!.removeItem(product!)
+    }
 
     var detailItem: AnyObject? {
         didSet {

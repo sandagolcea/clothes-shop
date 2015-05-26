@@ -19,7 +19,7 @@
 
 - Adding products to the shopping cart
 - Does not add products that are not in stock to the cart
-- (Removing product from the shopping cart - missing the button atm, business logic is done)
+- Removing product from the shopping cart
 - Total price for shopping cart is currently displayed
 
 ###Project folder structure
