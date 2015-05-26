@@ -4,9 +4,38 @@
 [![Code Climate](https://codeclimate.com/github/sandagolcea/clothes-shop/badges/gpa.svg)](https://codeclimate.com/github/sandagolcea/clothes-shop)  
 
 #iOS - Swift version
+
+####Products view:  
+
 ![productView](/readmeImages/iOS_productsView.png?raw=true "Products")
+
+####Individual product view:  
 ![productDetail](/readmeImages/iOS_productDetail.png?raw=true "Detail")
-![cartView](/readmeImages/iOS_cartView.jpg?raw=true "Cart")
+
+####Shopping cart view:  
+![cartView](/readmeImages/iOS_cartView.png?raw=true "Cart")
+
+###Stories supported
+
+- Adding products to the shopping cart
+- Does not add products that are not in stock to the cart
+- (Removing product from the shopping cart - missing the button atm, business logic is done)
+- Total price for shopping cart is currently displayed
+
+###Project folder structure
+
+- All the iOS relevant files can be found in the iOS folder
+
+###Improvements
+
+- Image caching, possibly using an existing library
+- Load products from the backend
+- Add support for vouchers
+- Unit tests
+
+###Learning Points
+
+- I've started the project on Sunday the 24th of May with absolutly zero knowledge of Swift or other mobile programming languages, and have gone through the basic swift syntax, XCode, basic iOS UI; setting up views and controllers, product tables, creating segues and managed to create a basic iOS application in less than a week.
 
 ##to run
 `git clone git@github.com:sandagolcea/clothes-shop.git`   
@@ -25,12 +54,45 @@ Build on the MEAN stack:
 - FrontEnd: AngularJS  
 - BackEnd: NODE.js with Express, using a MongoDB for products, categories and vouchers  
 
-Can be found online [clothes-shop.herokuapp.com](http://clothes-shop.herokuapp.com)
+###Can be found online at [clothes-shop.herokuapp.com](http://clothes-shop.herokuapp.com)
+
+####Main products view:
 ![Alt text](/readmeImages/productsView.png?raw=true "Optional Title")
+
+####Cart view:
 ![Alt text](/readmeImages/cartView.png?raw=true "Optional Title")
+
+####Single product view:
 ![Alt text](/readmeImages/singleProduct.png?raw=true "Optional Title")
+
+###Filter applied:
 ![Alt text](/readmeImages/filter.png?raw=true "Optional Title")
 
+###Stories supported
+
+- Adding products to the shopping cart
+- Does not add products that are not in stock to the cart
+- Removing products from the shopping cart
+- Total price for shopping cart is currently displayed
+- Vouchers can be applied (updated when removing products)
+- User alerted when valid/invalid voucher is applied
+- Total price after applying vouchers is displayed (vouchers applied are also displayed)
+
+###Project folder structure
+
+- Angular and other files (images, css, html) files are stored in the **public folder**, as these are visible to the user
+- the **config folder** stores files that are necessary for setting up a local application (a seed file for seeding the products into the database, a flush file for removing all data from the DB, and json files containing seed info: products, categories and vouchers).
+- **app** folder stores the models used by mongoDB
+- **test** folders stores 2 folders: **unit** for unit tests, and **e2e** for end to end protractor tests
+
+###Improvements
+- persistence of shopping cart, either in the browser using local storage, or in the server
+- storage of the images on the cloud
+- checkout ability
+- user sign in/out
+
+###Learning Points
+- this has been my first project using Angular, as such my application has undergone many changes as my understanding of Angular grew. I have used NODEjs/Express in the past and was really happy to finally be able to make a project using the entire MEAN stack.
 
 ##to run - for the first time
 `git clone git@github.com:sandagolcea/clothes-shop.git`   
