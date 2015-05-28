@@ -25,6 +25,7 @@
 ###Project folder structure
 
 - All the iOS relevant files can be found in the iOS folder
+*Photos for products are fetched from the online [clothes-shop.herokuapp.com](http://clothes-shop.herokuapp.com) application that is deployed on heroku.*
 
 ###Improvements
 
@@ -35,15 +36,10 @@
 
 ###Learning Points
 
-- I've started the project on Sunday the 24th of May with absolutly zero knowledge of Swift or other mobile programming languages, and have gone through the basic swift syntax, XCode, basic iOS UI; setting up views and controllers, product tables, creating segues and managed to create a basic iOS application in less than a week.
+- I've started the project with absolutly zero knowledge of Swift or other mobile programming languages, and have gone through the basic swift syntax, XCode, basic iOS UI; setting up views and controllers, product tables, creating segues, etc.;  and managed to create a basiciOS application in less than a week.
 
 ##to run
-`git clone git@github.com:sandagolcea/clothes-shop.git`   
-
-- you will have to install and run the node server for the product photos 
-or alt modify the URLs in ProductLoader.swift  
-see "to run - for the first time" section for this  
-
+- `git clone git@github.com:sandagolcea/clothes-shop.git`   
 - `open iOS/ClothesShop/ClothesShop.xcodeproj/`  
 - run project (`command + r`)  
 
@@ -81,9 +77,17 @@ Build on the MEAN stack:
 ###Project folder structure
 
 - Angular and other files (images, css, html) files are stored in the **public folder**, as these are visible to the user
+- inside the **public folder** there are the:
+  - **controllers folder** : this holds the main shop controller folder(used for general shop management) and the product controller(used for individual product view)  
+  - **services folder** : which holds the cart and the voucher service
+  - **views folder** : holds all the partial angular files that are needed: products list, cart view, etc.
+  - **css** : just the style file
+  - **images** : storage for product images (the link to the image for each product is stored in MongoDB, however, actual images are stored in this folder)
 - the **config folder** stores files that are necessary for setting up a local application (a seed file for seeding the products into the database, a flush file for removing all data from the DB, and json files containing seed info: products, categories and vouchers).
 - **app** folder stores the models used by mongoDB
-- **test** folders stores 2 folders: **unit** for unit tests, and **e2e** for end to end protractor tests
+- **test** folders stores 2 folders: 
+  - **unit** for unit tests with jasmine and karma  
+  - **e2e** for end to end protractor tests  
 
 ###Improvements
 - persistence of shopping cart, either in the browser using local storage, or in the server
